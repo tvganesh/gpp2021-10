@@ -47,7 +47,9 @@ matchFuncs <- c("Match Batting Scorecard",
                    "Team Runs Across 20 overs",
                    "Team Strike rate Across 20 overs",
                    "Team Wickets Across 20 overs",
-                   "Team ER Across 20 overs"
+                   "Team ER Across 20 overs",
+                   "Team Runs vs SR plot",
+                   "Team Wickets vs ER plot"
                 )
 
 
@@ -68,6 +70,8 @@ matches2TeamsFuncs <- c("Team Batsmen Batting Partnerships All Matches",
                              "Top Strike rate batsmen across 20 overs",
                              "Top Wickets bowlers across 20 overs",
                              "Top Economy rate bowlers across 20 overs",
+                             "Team Runs vs SR plot All Matches",
+                             "Team Wickets vs ER plot All Matches",
                              "Win Loss Head-to-head All Matches")
 
 # Functions to analyze IPL teams' overall performance
@@ -85,6 +89,8 @@ teamOverallPerfFunc <- c("Team Batsmen Partnerships Overall",
                            "Top Strike rate Overall batsmen across 20 overs",
                            "Top Wickets Overall bowlers across 20 overs",
                            "Top Economy rate Overall bowlers across 20 overs",
+                           "Team Runs vs SR plot Overall",
+                           "Team Wickets vs ER plot Overall",
                            "Win Loss Team vs All Opposition")
 
 

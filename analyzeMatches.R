@@ -120,8 +120,11 @@ analyzeMatches <- function(match,matchFunc,plotOrTable,team,opposition,t20type) 
         teamWicketsAcrossOvers(matchDF,team,opposition,plot=plotOrTable)
     } else if (matchFunc == "Team ER Across 20 overs" && isT20){
         teamERAcrossOvers(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Runs vs SR plot" && isT20){
+        teamRunsSRPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Wickets vs ER plot" && isT20){
+        teamWicketsERPlotMatch(matchDF,team,opposition,plot=plotOrTable)
     }
-
 
 }
 

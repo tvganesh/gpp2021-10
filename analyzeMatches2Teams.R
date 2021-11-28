@@ -161,6 +161,10 @@ analyzeMatches2Teams <- function(match2,matchFunc,plotOrTable1,repType, team,opp
         topWicketsBowlerAcrossOversOppnAllMatches(matchesDF,team)
     } else if (matchFunc == "Top Economy rate bowlers across 20 overs" && isT20){
         topERBowlerAcrossOversAllOppnAllMatches(matchesDF,team)
+    } else if (matchFunc == "Team Runs vs SR plot All Matches" && isT20){
+        teamRunsSRPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Wickets vs ER plot All Matches" && isT20){
+        teamWicketsERPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
     } else if (matchFunc == "Win Loss Head-to-head All Matches"){
        plotWinLossBetweenTeams(team,opposition,dir1,dateRange, plot=plotOrTable1)
     }
