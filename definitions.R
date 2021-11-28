@@ -49,7 +49,13 @@ matchFuncs <- c("Match Batting Scorecard",
                    "Team Wickets Across 20 overs",
                    "Team ER Across 20 overs",
                    "Team Runs vs SR plot",
-                   "Team Wickets vs ER plot"
+                   "Team Wickets vs ER plot",
+                   "Team Runs vs SR Power play plot",
+                   "Team Runs vs SR Middle overs plot",
+                   "Team Runs vs SR Death overs plot",
+                   "Team Wickets vs ER Power play plot",
+                   "Team Wickets vs ER Middle overs plot",
+                   "Team Wickets vs ER Death overs plot"
                 )
 
 

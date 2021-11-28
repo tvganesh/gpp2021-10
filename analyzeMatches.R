@@ -124,6 +124,18 @@ analyzeMatches <- function(match,matchFunc,plotOrTable,team,opposition,t20type) 
         teamRunsSRPlotMatch(matchDF,team,opposition,plot=plotOrTable)
     } else if (matchFunc == "Team Wickets vs ER plot" && isT20){
         teamWicketsERPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Runs vs SR Power play plot" && isT20){
+        teamRunsSRPowerPlayPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Runs vs SR Middle overs plot" && isT20){
+        teamRunsSRPMiddleOversPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Runs vs SR Death overs plot" && isT20){
+        teamWicketsERPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Wickets vs ER Power play plot" && isT20){
+        teamWicketsERPowerPlayPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Wickets vs ER Middle overs plot" && isT20){
+        teamWicketsERMiddleOversPlotMatch(matchDF,team,opposition,plot=plotOrTable)
+    } else if (matchFunc == "Team Wickets vs ER Death overs plot" && isT20){
+        teamWicketsERDeathOversPlotMatch(matchDF,team,opposition,plot=plotOrTable)
     }
 
 }
