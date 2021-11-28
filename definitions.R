@@ -78,6 +78,12 @@ matches2TeamsFuncs <- c("Team Batsmen Batting Partnerships All Matches",
                              "Top Economy rate bowlers across 20 overs",
                              "Team Runs vs SR plot All Matches",
                              "Team Wickets vs ER plot All Matches",
+                             "Team Runs vs SR Power play plot All Matches",
+                             "Team Runs vs SR Middle overs plot All Matches",
+                             "Team Runs vs SR Death overs plot All Matches",
+                             "Team Wickets vs ER Power play plot All Matches",
+                             "Team Wickets vs ER Middle overs plot All Matches",
+                             "Team Wickets vs ER Death overs plot All Matches",
                              "Win Loss Head-to-head All Matches")
 
 # Functions to analyze IPL teams' overall performance

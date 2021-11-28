@@ -165,7 +165,19 @@ analyzeMatches2Teams <- function(match2,matchFunc,plotOrTable1,repType, team,opp
         teamRunsSRPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
     } else if (matchFunc == "Team Wickets vs ER plot All Matches" && isT20){
         teamWicketsERPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
-    } else if (matchFunc == "Win Loss Head-to-head All Matches"){
+    } else if (matchFunc == "Team Runs vs SR Power play plot All Matches" && isT20){
+        teamRunsSRPowerPlayPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Runs vs SR Middle overs plot All Matches" && isT20){
+        teamRunsSRPMiddleOversPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Runs vs SR Death overs plot All Matches" && isT20){
+        teamRunSRDeathOversPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Wickets vs ER Power play plot All Matches" && isT20){
+        teamWicketERPowerPlayPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Wickets vs ER Middle overs plot All Matches" && isT20){
+        teamWicketERMiddleOversPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    } else if (matchFunc == "Team Wickets vs ER Death overs plot All Matches" && isT20){
+        teamWicketERDeathOversPlotOppnAllMatches(matchesDF,team,opposition,plot=plotOrTable1)
+    }  else if (matchFunc == "Win Loss Head-to-head All Matches"){
        plotWinLossBetweenTeams(team,opposition,dir1,dateRange, plot=plotOrTable1)
     }
 
