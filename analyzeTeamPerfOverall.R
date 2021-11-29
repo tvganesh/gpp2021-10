@@ -179,11 +179,11 @@ analyzeTeamPerfOverall <- function(matches,matchFunc,team,rankV,plotOrTable2,rep
     } else if (matchFunc == "Team Runs vs SR Death overs plot Overall" && isT20){
       teamRunSRDeathOversPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
     } else if (matchFunc == "Team Wickets vs ER Power play plot Overall" && isT20){
-      teamWicketsERPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
+      teamWicketsERPowerPlayPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
     } else if (matchFunc == "Team Wickets vs ER Middle overs plot Overall" && isT20){
-      teamWicketsERPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
+      teamWicketERMiddleOversPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
     } else if (matchFunc == "Team Wickets vs ER Death overs plot Overall" && isT20){
-      teamWicketsERPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
+      teamWicketsERDeathOversPlotAllOppnAllMatches(matchesDF,team,plot=plotOrTable2)
     } else if (matchFunc == "Win Loss Team vs All Opposition"){
       plotWinLossTeamVsAllTeams(team,dir1,dateRange, plot=plotOrTable2)
 
