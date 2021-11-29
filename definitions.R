@@ -103,6 +103,12 @@ teamOverallPerfFunc <- c("Team Batsmen Partnerships Overall",
                            "Top Economy rate Overall bowlers across 20 overs",
                            "Team Runs vs SR plot Overall",
                            "Team Wickets vs ER plot Overall",
+                           "Team Runs vs SR Power play plot Overall",
+                           "Team Runs vs SR Middle overs plot Overall",
+                           "Team Runs vs SR Death overs plot Overall",
+                           "Team Wickets vs ER Power play plot Overall",
+                           "Team Wickets vs ER Middle overs plot Overall",
+                           "Team Wickets vs ER Death overs plot Overall",
                            "Win Loss Team vs All Opposition")
 
 
