@@ -153,7 +153,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                  tabPanel("Overall Performance",
                                                                           h4("Analyze IPL team's overall performance"),
                                                                           sidebarPanel(
-                                                                              selectInput('overallperfFunc', 'Select function', teamOverallPerfFunc),
+                                                                              selectInput('overallPerfFunc', 'Select function', teamOverallPerfFunc),
                                                                               selectInput('teamMatches', 'Select the team', IPLTeamsAll,selectize=FALSE, size=13),
                                                                               uiOutput("Rank"),
                                                                               uiOutput("dateRange2"),
@@ -179,13 +179,40 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                           )
 
                                                                  ),
+                                                                 # Analyze IPL Team Overall Perf
+                                                                 # tabPanel("IPL Performance",
+                                                                 #          h4("Overall IPL performance"),
+                                                                 #          sidebarPanel(
+                                                                 #              selectInput('T20PerfFunc', 'Select function', T20OverallPerfFunc),
+                                                                 #              uiOutput("dateRange5"),
+                                                                 #              uiOutput("Mode"),
+                                                                 #                 sliderInput("minMatches", "Matches played",
+                                                                 #
+                                                                 #                              min = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
+                                                                 #                              max = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]),
+                                                                 #                              value = round(((helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
+                                                                 #                  )
+                                                                 #              ),
+                                                                 #          mainPanel(
+                                                                 #              uiOutput('printOrPlotIPLTeamPerfoverall'),
+                                                                 #              column(12, offset=6,
+                                                                 #                     br(),
+                                                                 #                     br(),
+                                                                 #                     br(),
+                                                                 #                     br(),
+                                                                 #                     br(),                                                 tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                 #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                                 #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                 #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 #              )
+                                                                 #          )
+                                                                 #
+                                                                 # ),
                                                                  # Rank IPL Batsmen tab
-                                                                 tabPanel("Rank IPL Batsmen",
-                                                                          br(),
-                                                                          br(),
-                                                                          br(),
-                                                                          h4('Rank IPL Batsmen'),
+                                                                  tabPanel("IPL Performance Analysis",
+                                                                          #h4("IPL Performance analysis"),
                                                                           sidebarPanel(
+                                                                              selectInput('T20PerfFunc', 'Select function', T20OverallPerfFunc),
                                                                               sliderInput("minMatches", "Matches played",
 
                                                                                           min = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
@@ -193,7 +220,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                                           value =round(((helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode"),
-                                                                              uiOutput("dateRange5"),
+                                                                              uiOutput("dateRange5")
 
                                                                           ),
                                                                           mainPanel(
