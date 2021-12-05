@@ -286,46 +286,79 @@ shinyServer(function(input, output,session) {
   ################################ Rank IPL ##############################
   # Rank IPL Batsmen
 
+  output$IPLBattingPerfPlots <- renderPlot({
+    printOrPlotIPLBattingPerf(input, output,"IPL")
 
-  output$dateRange5<- renderUI({
-    m <- helper(IPLTeamNames, "./ipl/iplBattingBowlingDetails")
-    dateRangeInput("dateRange5", label = h4("Date range"),
-                   start = m[[1]],
-                   end   = m[[2]],
-                   min = m[[1]],
-                   max= m[[2]])
   })
 
-  observeEvent(input$dateRange5,{
-     updateDateRangeInput(session, "dateRange5",
-                           start = input$dateRange5[1],
-                           end   = input$dateRange5[2])
-    updateSliderInput(session, "minMatches", # Set slider at 75$ between min & max
-                      min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]),
-                      max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]) +
-                                    (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]))/1.333))
+  output$IPLBattingPerfPlotly <- renderPlotly({
+    printOrPlotIPLBattingPerf(input, output,"IPL")
+
   })
-
-
 
   # Analyze and display IPL Match table
-  output$IPLRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    rootDir=getwd()
-    a <- rankPlayers(input, output, "IPL","batsmen")
-    head(a,20)
-  })
+  output$IPLBattingPerfPrint <- renderTable({
+    a <- printOrPlotIPLBattingPerf(input, output,"IPL")
+    a
 
+  })
   # Output either a table or a plot
-  output$rankIPLBatsmen <-  renderUI({
+  output$plotOrPrintIPLBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output, "IPL","batsmen"))){
-      tableOutput("IPLRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotIPLBattingPerf(input, output,"IPL"))){
+      tableOutput("IPLBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable == 1){
+        plotOutput("IPLBattingPerfPlots")
+      } else{
+        plotlyOutput("IPLBattingPerfPlotly")
+      }
 
     }
+
   })
+
+
+  # output$dateRange5<- renderUI({
+  #   m <- helper(IPLTeamNames, "./ipl/iplBattingBowlingDetails")
+  #   dateRangeInput("dateRange5", label = h4("Date range"),
+  #                  start = m[[1]],
+  #                  end   = m[[2]],
+  #                  min = m[[1]],
+  #                  max= m[[2]])
+  # })
+  #
+  # observeEvent(input$dateRange5,{
+  #    updateDateRangeInput(session, "dateRange5",
+  #                          start = input$dateRange5[1],
+  #                          end   = input$dateRange5[2])
+  #   updateSliderInput(session, "minMatches", # Set slider at 75$ between min & max
+  #                     min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]),
+  #                     max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]),
+  #                     value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]) +
+  #                                   (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]))/1.333))
+  # })
+  #
+  #
+  #
+  # # Analyze and display IPL Match table
+  # output$IPLRankBatsmenPrint <- renderTable({
+  #   Sys.sleep(1.5)
+  #   plot(runif(10))
+  #   rootDir=getwd()
+  #   a <- rankPlayers(input, output, "IPL","batsmen")
+  #   head(a,20)
+  # })
+  #
+  # # Output either a table or a plot
+  # output$rankIPLBatsmen <-  renderUI({
+  #   # Check if output is a dataframe. If so, print
+  #   if(is.data.frame(a <- rankPlayers(input, output, "IPL","batsmen"))){
+  #     tableOutput("IPLRankBatsmenPrint")
+  #
+  #   }
+  # })
 
   ########################################
   # Rank IPL Bowlers

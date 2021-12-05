@@ -3,11 +3,11 @@
 # Title :  GooglyPlusPLus - An interactive app to analyze T20 and ODI matches
 # Designed and developed by: Tinniam V Ganesh
 # Date : 28 Jun 2020
-# File: printOrPlotIPLBattingPerformance
+# File: printOrPlotIPLBattingPerf
 # More details: https://gigadom.in/
 #
 #########################################################################################################
-printOrPlotIPLBattingPerformance <- function(input,output,t20type="IPL"){
+printOrPlotIPLBattingPerf <- function(input,output,t20type="IPL"){
    cat("match dir=",getwd(),"\n")
 
     print("Entering print plot")
