@@ -1636,10 +1636,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5NTB[1],
                          end   = input$dateRange5NTB[2])
     updateSliderInput(session, "minMatchesNTB",
-                      min=(helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbBattingBowlingDetails")[[1]]),
-                      max = (helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbBattingBowlingDetails")[[1]]) +
-                                      (helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbPerformance","NTB")[[1]]),
+                      max = (helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbPerformance","NTB")[[2]]),
+                      value =round(((helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbPerformance","NTB")[[1]]) +
+                                      (helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbPerformance","NTB")[[2]]))/1.333))
   })
 
   # Analyze and display NTB Match table
@@ -1949,10 +1949,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5PSL[1],
                          end   = input$dateRange5PSL[2])
     updateSliderInput(session, "minMatchesPSL",
-                      min=(helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslBattingBowlingDetails")[[1]]),
-                      max = (helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslBattingBowlingDetails")[[1]]) +
-                                      (helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslPerformance","PSL")[[1]]),
+                      max = (helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslPerformance","PSL")[[2]]),
+                      value =round(((helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslPerformance","PSL")[[1]]) +
+                                      (helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslPerformance","PSL")[[2]]))/1.333))
   })
 
   # Analyze and display PSL Match table
@@ -2263,10 +2263,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5WBB[1],
                          end   = input$dateRange5WBB[2])
     updateSliderInput(session, "minMatchesWBB",
-                      min=(helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbBattingBowlingDetails")[[1]]),
-                      max = (helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbBattingBowlingDetails")[[1]]) +
-                                      (helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbPerformance","WBB")[[1]]),
+                      max = (helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbPerformance","WBB")[[2]]),
+                      value =round(((helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbPerformance","WBB")[[1]]) +
+                                      (helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbPerformance","WBB")[[2]]))/1.333))
   })
 
   # Analyze and display WBB Match table
@@ -3041,10 +3041,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5CPL[1],
                          end   = input$dateRange5CPL[2])
     updateSliderInput(session, "minMatchesCPL",
-                      min=(helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplBattingBowlingDetails")[[1]]),
-                      max = (helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplBattingBowlingDetails")[[1]]) +
-                                      (helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplPerformance","CPL")[[1]]),
+                      max = (helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplPerformance","CPL")[[2]]),
+                      value =round(((helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplPerformance","CPL")[[1]]) +
+                                      (helper1(CPLTeamNames, input$dateRange5CPL, "./cpl/cplPerformance","CPL")[[2]]))/1.333))
   })
 
 
@@ -3359,10 +3359,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5SSM[1],
                          end   = input$dateRange5SSM[2])
     updateSliderInput(session, "minMatchesSSM",
-                      min=(helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmBattingBowlingDetails")[[1]]),
-                      max = (helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmBattingBowlingDetails")[[1]]) +
-                                      (helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmPerformance","SSM")[[1]]),
+                      max = (helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmPerformance","SSM")[[2]]),
+                      value =round(((helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmPerformance","SSM")[[1]]) +
+                                      (helper1(SSMTeamNames, input$dateRange5SSM, "./ssm/ssmPerformance","SSM")[[2]]))/1.333))
   })
 
 
