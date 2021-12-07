@@ -1013,10 +1013,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5T20W[1],
                          end   = input$dateRange5T20W[2])
     updateSliderInput(session, "minMatchesT20W",
-                      min=(helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenBattingBowlingDetails")[[1]]),
-                      max = (helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenBattingBowlingDetails")[[1]]) +
-                                      (helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[1]]),
+                      max = (helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[2]]),
+                      value =round(((helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[1]]) +
+                                      (helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[2]]))/1.333))
   })
   # Analyze and display T20W Match table
   output$T20WRankBatsmenPrint <- renderTable({
@@ -1326,10 +1326,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5BBL[1],
                          end   = input$dateRange5BBL[2])
     updateSliderInput(session, "minMatchesBBL",
-                      min=(helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblBattingBowlingDetails")[[1]]),
-                      max = (helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblBattingBowlingDetails")[[2]]),
-                      value =round(((helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblBattingBowlingDetails")[[1]]) +
-                                      (helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblPerformance","BBL")[[1]]),
+                      max = (helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblPerformance","BBL")[[2]]),
+                      value =round(((helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblPerformance","BBL")[[1]]) +
+                                      (helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblPerformance","BBL")[[2]]))/1.333))
   })
 
   # Analyze and display BBL Match table
