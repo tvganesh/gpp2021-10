@@ -45,6 +45,7 @@ source("matches2TeamsHelper.R")
 source("teamPerfOverallHelper.R")
 source("batsmanHelper.R")
 source("bowlerHelper.R")
+source("printOrPlotT20BattingPerf.R")
 shinyServer(function(input, output,session) {
 
   output$dateRange3 <- renderUI({
@@ -283,29 +284,48 @@ shinyServer(function(input, output,session) {
   })
 
 
-  ################################ Rank IPL ##############################
-  # Rank IPL Batsmen
+  ################################  IPL Overall Batting Performance ##############################
+  # IPL Batsmen
+  output$dateRange5<- renderUI({
+    m <- helper(IPLTeamNames, "./ipl/IPLPerformance","IPL")
+    dateRangeInput("dateRange5", label = h4("Date range"),
+                   start = m[[1]],
+                   end   = m[[2]],
+                   min = m[[1]],
+                   max= m[[2]])
+  })
+
+  observeEvent(input$dateRange5,{
+    updateDateRangeInput(session, "dateRange5",
+                         start = input$dateRange5[1],
+                         end   = input$dateRange5[2])
+    updateSliderInput(session, "minMatches", # Set slider at 75$ between min & max
+                      min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]),
+                      max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[2]]),
+                      value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]) +
+                                      (helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[2]]))/1.333))
+  })
 
   output$IPLBattingPerfPlots <- renderPlot({
-    printOrPlotIPLBattingPerf(input, output,"IPL")
+    printOrPlotT20BattingPerf(input, output,"IPL")
 
   })
 
   output$IPLBattingPerfPlotly <- renderPlotly({
-    printOrPlotIPLBattingPerf(input, output,"IPL")
+    printOrPlotT20BattingPerf(input, output,"IPL")
 
   })
 
   # Analyze and display IPL Match table
   output$IPLBattingPerfPrint <- renderTable({
-    a <- printOrPlotIPLBattingPerf(input, output,"IPL")
+    a <- printOrPlotT20BattingPerf(input, output,"IPL")
     a
 
   })
   # Output either a table or a plot
   output$plotOrPrintIPLBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(scorecard <- printOrPlotIPLBattingPerf(input, output,"IPL"))){
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"IPL"))){
       tableOutput("IPLBattingPerfPrint")
     }
     else{ #Else plot
@@ -320,25 +340,7 @@ shinyServer(function(input, output,session) {
   })
 
 
-  # output$dateRange5<- renderUI({
-  #   m <- helper(IPLTeamNames, "./ipl/iplBattingBowlingDetails")
-  #   dateRangeInput("dateRange5", label = h4("Date range"),
-  #                  start = m[[1]],
-  #                  end   = m[[2]],
-  #                  min = m[[1]],
-  #                  max= m[[2]])
-  # })
-  #
-  # observeEvent(input$dateRange5,{
-  #    updateDateRangeInput(session, "dateRange5",
-  #                          start = input$dateRange5[1],
-  #                          end   = input$dateRange5[2])
-  #   updateSliderInput(session, "minMatches", # Set slider at 75$ between min & max
-  #                     min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]),
-  #                     max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]),
-  #                     value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[1]]) +
-  #                                   (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplBattingBowlingDetails")[[2]]))/1.333))
-  # })
+
   #
   #
   #

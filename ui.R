@@ -215,17 +215,20 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                               selectInput('T20PerfFunc', 'Select function', T20OverallPerfFunc),
                                                                               sliderInput("minMatches", "Matches played",
 
-                                                                                          min = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
-                                                                                          max = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]),
-                                                                                          value =round(((helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
+                                                                                          #min = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
+                                                                                          #max = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]),
+                                                                                          #value =round(((helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode"),
-                                                                              uiOutput("dateRange5")
+                                                                              uiOutput("dateRange5"),
+                                                                              radioButtons("plotOrTable9", label = h4("Plot(static,interactive) or table"),
+                                                                                           choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                                           selected = 3,inline=T)
 
                                                                           ),
                                                                           mainPanel(
                                                                               shinycssloaders::withSpinner(
-                                                                                  uiOutput('rankIPLBatsmen'),
+                                                                                  uiOutput('plotOrPrintIPLBattingPerf'),
                                                                               ),
 
                                                                               column(7, offset=4,
@@ -422,10 +425,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                      h4('Rank Intl. T20 Batsmen (men)'),
                                                                      sidebarPanel(
                                                                          sliderInput("minMatchesT20M", "Matches played",
-                                                                                     min = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]),
-                                                                                     max = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]),
-                                                                                     value =round(((helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]) +
-                                                                                                       (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]))/2)
+                                                                                     #min = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]),
+                                                                                     #max = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]),
+                                                                                     #value =round(((helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]) +
+                                                                                                   #    (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]))/2)
                                                                          ),
                                                                          uiOutput("ModeT20M"),
                                                                          uiOutput("dateRange5T20M")
@@ -627,10 +630,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                                        sidebarPanel(
                                                                            sliderInput("minMatchesT20W", "Matches played",
-                                                                                       min = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
-                                                                                       max = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
-                                                                                       value =round(((helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) +
-                                                                                                         (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]))/2),
+                                                                                       #min = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
+                                                                                       #max = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
+                                                                                       #value =round(((helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) +
+                                                                                       #                  (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]))/2),
                                                                            ),
                                                                            uiOutput("ModeT20W"),
                                                                            uiOutput("dateRange5T20W")
@@ -830,10 +833,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatchesBBL", "Matches played",
-                                                                             min = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
-                                                                             max = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) +
-                                                                                               (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]))/2)
+                                                                             #min = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) +
+                                                                             #                  (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]))/2)
                                                                  ),
                                                                  uiOutput("ModeBBL"),
                                                                  uiOutput("dateRange5BBL")
@@ -859,9 +862,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatches1BBL", "Matches played",
-                                                                             min = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
-                                                                             max = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) + (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]))/2)
+                                                                             #min = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) + (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]))/2)
                                                                  ),
                                                                  uiOutput("Mode1BBL"),
                                                                  uiOutput("dateRange6BBL")
@@ -1033,10 +1036,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatchesNTB", "Matches played",
-                                                                             min = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
-                                                                             max = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) +
-                                                                                               (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]))/2)
+                                                                             #min = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) +
+                                                                              #                 (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]))/2)
                                                                  ),
                                                                  uiOutput("ModeNTB"),
                                                                  uiOutput("dateRange5NTB")
@@ -1236,10 +1239,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatchesPSL", "Matches played",
-                                                                             min = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]),
-                                                                             max = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]) +
-                                                                                               (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]))/2)
+                                                                             #min = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]) +
+                                                                             #                  (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]))/2)
                                                                  ),
                                                                  uiOutput("ModePSL"),
                                                                  uiOutput("dateRange5PSL")
@@ -1438,10 +1441,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                               sidebarPanel(
 
                                                                   sliderInput("minMatchesWBB", "Matches played",
-                                                                              min = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]),
-                                                                              max = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[4]]),
-                                                                              value =round(((helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]) +
-                                                                                                (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]))/2)
+                                                                              #min = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]),
+                                                                              #max = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[4]]),
+                                                                              #value =round(((helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]) +
+                                                                             #                   (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]))/2)
                                                                   ),
                                                                   uiOutput("ModeWBB"),
                                                                   uiOutput("dateRange5WBB")
@@ -1641,10 +1644,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatchesCPL", "Matches played",
-                                                                             min = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]),
-                                                                             max = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]) +
-                                                                                               (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]))/2)
+                                                                             #min = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]) +
+                                                                             #                  (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]))/2)
                                                                  ),
                                                                  uiOutput("ModeCPL"),
                                                                  uiOutput("dateRange5CPL")
@@ -1845,10 +1848,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatchesSSM", "Matches played",
-                                                                             min = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]),
-                                                                             max = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[4]]),
-                                                                             value =round(((helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]) +
-                                                                                               (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]))/2)
+                                                                             #min = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]),
+                                                                             #max = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[4]]),
+                                                                             #value =round(((helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]) +
+                                                                             #                  (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]))/2)
                                                                  ),
                                                                  uiOutput("ModeSSM"),
                                                                  uiOutput("dateRange5SSM")

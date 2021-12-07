@@ -3,35 +3,16 @@
 # Title :  GooglyPlusPLus - An interactive app to analyze T20 and ODI matches
 # Designed and developed by: Tinniam V Ganesh
 # Date : 28 Jun 2020
-# File: printOrPlotIPLBattingPerf
+# File: printOrPlotT20BattingPerf
 # More details: https://gigadom.in/
 #
 #########################################################################################################
-printOrPlotIPLBattingPerf <- function(input,output,t20type="IPL"){
+printOrPlotT20BattingPerf <- function(input,output,type="IPL"){
    cat("match dir=",getwd(),"\n")
 
     print("Entering print plot")
-    cat("t20=",t20type,"\n")
 
-    output$dateRange5T20M<- renderUI({
-      m <- helper(T20MTeamNames, "./t20/t20BattingBowlingDetails")
-      dateRangeInput("dateRange5T20M", label = h4("Date range"),
-                     start = m[[1]],
-                     end   = m[[2]],
-                     min = m[[1]],
-                     max= m[[2]])
-    })
 
-    observeEvent(input$dateRange5T20M,{
-      updateDateRangeInput(session, "dateRange5T20M",
-                           start = input$dateRange5T20M[1],
-                           end   = input$dateRange5T20M[2])
-      updateSliderInput(session, "minMatchesT20M",
-                        min=(helper1(T20MTeamNames, input$dateRange5T20M, "./t20/t20BattingBowlingDetails")[[1]]),
-                        max = (helper1(T20MTeamNames, input$dateRange5T20M, "./t20/t20BattingBowlingDetails")[[2]]),
-                        value =round(((helper1(T20MTeamNames, input$dateRange5T20M, "./t20/t20BattingBowlingDetails")[[1]]) +
-                                        (helper1(T20MTeamNames, input$dateRange5T20M, "./t20/t20BattingBowlingDetails")[[2]]))/1.333))
-    })
 
     if (type == "IPL"){
       output$Mode <- renderUI({
@@ -133,19 +114,15 @@ printOrPlotIPLBattingPerf <- function(input,output,t20type="IPL"){
 
 
     if(type == "IPL"){
-      if(player=="batsmen"){
-        if(is.null(input$dateRange5)){
-          print("Null date. Returning")
-          return
-        } else {
+
           print("Date ok")
           if(input$T20PerfFunc == "IPL batsmen rank")
             a <-rankT20Batsmen(IPLTeamNames,"./ipl/IPLPerformance",input$minMatches, input$dateRange5,input$runsOverSR,"IPL")
           else if(input$T20PerfFunc == "IPL Runs vs SR plot")
-            a <- overallRunsSRPlotT20M(IPLTeamNames,"./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",plot=1)
-        }
+            a <- overallRunsSRPlotT20M(IPLTeamNames,"./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",input$plotOrTable9)
 
-      }
+
+
 
     head(a)
     a
