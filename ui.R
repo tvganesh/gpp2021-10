@@ -153,7 +153,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                  tabPanel("Overall Performance",
                                                                           h4("Analyze IPL team's overall performance"),
                                                                           sidebarPanel(
-                                                                              selectInput('overallPerfFunc', 'Select function', teamOverallPerfFunc),
+                                                                              selectInput('overallperfFunc', 'Select function', teamOverallPerfFunc),
                                                                               selectInput('teamMatches', 'Select the team', IPLTeamsAll,selectize=FALSE, size=13),
                                                                               uiOutput("Rank"),
                                                                               uiOutput("dateRange2"),
@@ -224,7 +224,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                               uiOutput("dateRange5"),
                                                                               radioButtons("plotOrTable9", label = h4("Plot(static,interactive) or table"),
                                                                                            choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
-                                                                                           selected = 3,inline=T)
+                                                                                           selected = 2,inline=T)
 
                                                                           ),
                                                                           mainPanel(

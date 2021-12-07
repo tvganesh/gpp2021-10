@@ -113,7 +113,9 @@ teamOverallPerfFunc <- c("Team Batsmen Partnerships Overall",
 
 # T20 functions
 T20OverallPerfFunc <- c("IPL batsmen rank",
-                        "IPL Runs vs SR plot")
+                        "IPL Runs vs SR plot",
+                        "IPL Runs vs SR Powerplay plot",
+                        "IPL Runs vs SR Middle overs plot")
 
 
 # Runs vs Strike Rate

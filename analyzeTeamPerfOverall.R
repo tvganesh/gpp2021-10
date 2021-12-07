@@ -115,6 +115,7 @@ analyzeTeamPerfOverall <- function(matches,matchFunc,team,rankV,plotOrTable2,rep
   print(dim(matchesDF))
 
     # Call the correct function
+    print(matchFunc)
     if(matchFunc == "Team Batting Scorecard Overall"){
         teamBattingScorecardAllOppnAllMatches(matchesDF,team)
     } else if (matchFunc == "Team Batsmen Partnerships Overall"){

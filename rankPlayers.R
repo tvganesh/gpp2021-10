@@ -139,10 +139,12 @@ rankPlayers <- function(input,output, type="IPL",player="batsmen",plot=plotOrTab
         } else {
           print("Date ok")
           if(input$T20PerfFunc == "IPL batsmen rank")
-               a <-rankT20Batsmen(IPLTeamNames,"./ipl/IPLPerformance",input$minMatches, input$dateRange5,input$runsOverSR,"IPL")
+               a <-rankT20Batsmen("./ipl/IPLPerformance",input$minMatches, input$dateRange5,input$runsOverSR,"IPL")
           else if(input$T20PerfFunc == "IPL Runs vs SR plot")
+            a <- overallRunsSRPlotT20M("./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",plot=1)
+         else if(input$T20PerfFunc == "IPL Runs vs SR Powerplay plot")
             a <- overallRunsSRPlotT20M(IPLTeamNames,"./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",plot=1)
-          }
+    }
 
     } else if (player =="bowlers"){
       if(is.null(input$dateRange6)){
