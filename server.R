@@ -299,7 +299,7 @@ shinyServer(function(input, output,session) {
     updateDateRangeInput(session, "dateRange5",
                          start = input$dateRange5[1],
                          end   = input$dateRange5[2])
-    updateSliderInput(session, "minMatches", # Set slider at 75$ between min & max
+    updateSliderInput(session, "minMatches", # Set slider at 75 between min & max
                       min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]),
                       max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[2]]),
                       value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]) +

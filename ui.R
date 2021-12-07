@@ -217,7 +217,8 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                                                           min = (helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]),
                                                                                           max = (helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[4]]),
-                                                                                          value =round(((helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
+                                                                                          value =round(((helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]) +
+                                                                                                               (helper(IPLTeamNames,"./ipl/iplPerformance")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode"),
                                                                               uiOutput("dateRange5"),
@@ -271,6 +272,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
 
                                                      ))),
+
 
                       ############################# International T20 (Men) ############################################
                       #############################################################################################
@@ -862,9 +864,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              sidebarPanel(
 
                                                                  sliderInput("minMatches1BBL", "Matches played",
-                                                                             #min = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) + (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]))/2)
+                                                                             min = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
+                                                                             max = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
+                                                                             value =round(((helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) + (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]))/2)
                                                                  ),
                                                                  uiOutput("Mode1BBL"),
                                                                  uiOutput("dateRange6BBL")
