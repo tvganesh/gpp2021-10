@@ -215,9 +215,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                               selectInput('T20PerfFunc', 'Select function', T20OverallPerfFunc),
                                                                               sliderInput("minMatches", "Matches played",
 
-                                                                                          #min = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
-                                                                                          #max = (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]),
-                                                                                          #value =round(((helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
+                                                                                          min = (helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]),
+                                                                                          max = (helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[4]]),
+                                                                                          value =round(((helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]) + (helper(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode"),
                                                                               uiOutput("dateRange5"),
@@ -420,32 +420,32 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                             ),
                                                             # Rank T20 Men  tab
-                                                            tabPanel("Rank Intl. T20 Batsmen (men)",
-
-                                                                     h4('Rank Intl. T20 Batsmen (men)'),
-                                                                     sidebarPanel(
-                                                                         sliderInput("minMatchesT20M", "Matches played",
-                                                                                     #min = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]),
-                                                                                     #max = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]),
-                                                                                     #value =round(((helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]) +
-                                                                                                   #    (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]))/2)
-                                                                         ),
-                                                                         uiOutput("ModeT20M"),
-                                                                         uiOutput("dateRange5T20M")
-                                                                     ),
-                                                                     mainPanel(
-                                                                         shinycssloaders::withSpinner(
-                                                                             uiOutput('rankT20MBatsmen'),
-                                                                         ),
-
-                                                                         column(7, offset=4,
-                                                                                tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                                tags$h5((tags$i("Oct 11, 2021"))),
-                                                                                tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                                tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                         )
-                                                                     )
-                                                            ),
+                                                            # tabPanel("Rank Intl. T20 Batsmen (men)",
+                                                            #
+                                                            #          h4('Rank Intl. T20 Batsmen (men)'),
+                                                            #          sidebarPanel(
+                                                            #              sliderInput("minMatchesT20M", "Matches played",
+                                                            #                          min = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]),
+                                                            #                          max = (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]),
+                                                            #                          value =round(((helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]) +
+                                                            #                                            (helper(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]))/2)
+                                                            #              ),
+                                                            #              uiOutput("ModeT20M"),
+                                                            #              uiOutput("dateRange5T20M")
+                                                            #          ),
+                                                            #          mainPanel(
+                                                            #              shinycssloaders::withSpinner(
+                                                            #                  uiOutput('rankT20MBatsmen'),
+                                                            #              ),
+                                                            #
+                                                            #              column(7, offset=4,
+                                                            #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                            #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                            #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                            #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                            #              )
+                                                            #          )
+                                                            # ),
                                                             # Rank T20 Bowlers(men) tab
                                                             tabPanel("Rank Intl. T20 Bowlers (men)",
                                                                      br(),
@@ -624,34 +624,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                               ),
                                                               # Rank T20 Women  tab
-                                                              tabPanel("Rank Intl. T20 Batsmen (women)",
-
-                                                                       h4('Rank Intl. T20 Batsmen (women)'),
-
-                                                                       sidebarPanel(
-                                                                           sliderInput("minMatchesT20W", "Matches played",
-                                                                                       #min = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
-                                                                                       #max = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
-                                                                                       #value =round(((helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) +
-                                                                                       #                  (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]))/2),
-                                                                           ),
-                                                                           uiOutput("ModeT20W"),
-                                                                           uiOutput("dateRange5T20W")
-
-                                                                       ),
-                                                                       mainPanel(
-                                                                           shinycssloaders::withSpinner(
-                                                                               uiOutput('rankT20WBatsmen'),
-                                                                           ),
-
-                                                                           column(7, offset=4,
-                                                                                  tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                                  tags$h5((tags$i("Oct 11, 2021"))),
-                                                                                  tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                                  tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                           )
-                                                                       )
-                                                              ),
+                                                              # tabPanel("Rank Intl. T20 Batsmen (women)",
+                                                              #
+                                                              #          h4('Rank Intl. T20 Batsmen (women)'),
+                                                              #
+                                                              #          sidebarPanel(
+                                                              #              sliderInput("minMatchesT20W", "Matches played",
+                                                              #                          min = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
+                                                              #                          max = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
+                                                              #                          value =round(((helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) +
+                                                              #                                            (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]))/2),
+                                                              #              ),
+                                                              #              uiOutput("ModeT20W"),
+                                                              #              uiOutput("dateRange5T20W")
+                                                              #
+                                                              #          ),
+                                                              #          mainPanel(
+                                                              #              shinycssloaders::withSpinner(
+                                                              #                  uiOutput('rankT20WBatsmen'),
+                                                              #              ),
+                                                              #
+                                                              #              column(7, offset=4,
+                                                              #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                              #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                              #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                              #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                              #              )
+                                                              #          )
+                                                              # ),
                                                               # Rank T20 Bowlers(women) tab
                                                               tabPanel("Rank Intl. T20 Bowlers (women)",
 
@@ -827,34 +827,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank BBL Players tab
-                                                    tabPanel("Rank  BBL Batsmen",
-
-                                                             h4('Rank  BBL Batsmen '),
-                                                             sidebarPanel(
-
-                                                                 sliderInput("minMatchesBBL", "Matches played",
-                                                                             #min = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) +
-                                                                             #                  (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]))/2)
-                                                                 ),
-                                                                 uiOutput("ModeBBL"),
-                                                                 uiOutput("dateRange5BBL")
-
-                                                             ),
-                                                             mainPanel(
-                                                                 shinycssloaders::withSpinner(
-                                                                     uiOutput('rankBBLBatsmen'),
-                                                                 ),
-
-                                                                 column(7, offset=4,
-                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                        tags$h5((tags$i("Oct 11, 2021"))),
-                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                 )
-                                                             )
-                                                    ),
+                                                    # tabPanel("Rank  BBL Batsmen",
+                                                    #
+                                                    #          h4('Rank  BBL Batsmen '),
+                                                    #          sidebarPanel(
+                                                    #
+                                                    #              sliderInput("minMatchesBBL", "Matches played",
+                                                    #                          min = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
+                                                    #                          max = (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
+                                                    #                          value =round(((helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) +
+                                                    #                                            (helper(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]))/2)
+                                                    #              ),
+                                                    #              uiOutput("ModeBBL"),
+                                                    #              uiOutput("dateRange5BBL")
+                                                    #
+                                                    #          ),
+                                                    #          mainPanel(
+                                                    #              shinycssloaders::withSpinner(
+                                                    #                  uiOutput('rankBBLBatsmen'),
+                                                    #              ),
+                                                    #
+                                                    #              column(7, offset=4,
+                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                    #              )
+                                                    #          )
+                                                    # ),
                                                     # Rank BBL Bowlers tab
                                                     tabPanel("Rank BBL Bowlers",
 
@@ -1030,34 +1030,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank NTB Players tab
-                                                    tabPanel("Rank  NTB Batsmen",
-
-                                                             h4('Rank  NTB Batsmen '),
-                                                             sidebarPanel(
-
-                                                                 sliderInput("minMatchesNTB", "Matches played",
-                                                                             #min = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) +
-                                                                              #                 (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]))/2)
-                                                                 ),
-                                                                 uiOutput("ModeNTB"),
-                                                                 uiOutput("dateRange5NTB")
-
-                                                             ),
-                                                             mainPanel(
-                                                                 shinycssloaders::withSpinner(
-                                                                     uiOutput('rankNTBBatsmen'),
-                                                                 ),
-
-                                                                 column(7, offset=4,
-                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                        tags$h5((tags$i("Oct 11, 2021"))),
-                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                 )
-                                                             )
-                                                    ),
+                                                    # tabPanel("Rank  NTB Batsmen",
+                                                    #
+                                                    #          h4('Rank  NTB Batsmen '),
+                                                    #          sidebarPanel(
+                                                    #
+                                                    #              sliderInput("minMatchesNTB", "Matches played",
+                                                    #                          min = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
+                                                    #                          max = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
+                                                    #                          value =round(((helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) +
+                                                    #                                            (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]))/2)
+                                                    #              ),
+                                                    #              uiOutput("ModeNTB"),
+                                                    #              uiOutput("dateRange5NTB")
+                                                    #
+                                                    #          ),
+                                                    #          mainPanel(
+                                                    #              shinycssloaders::withSpinner(
+                                                    #                  uiOutput('rankNTBBatsmen'),
+                                                    #              ),
+                                                    #
+                                                    #              column(7, offset=4,
+                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                    #              )
+                                                    #          )
+                                                    # ),
                                                     # Rank NTB Bowlers tab
                                                     tabPanel("Rank NTB Bowlers",
 
@@ -1233,34 +1233,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank PSL Players tab
-                                                    tabPanel("Rank  PSL Batsmen",
-
-                                                             h4('Rank  PSL Batsmen '),
-                                                             sidebarPanel(
-
-                                                                 sliderInput("minMatchesPSL", "Matches played",
-                                                                             #min = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]) +
-                                                                             #                  (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]))/2)
-                                                                 ),
-                                                                 uiOutput("ModePSL"),
-                                                                 uiOutput("dateRange5PSL")
-
-                                                             ),
-                                                             mainPanel(
-                                                                 shinycssloaders::withSpinner(
-                                                                     uiOutput('rankPSLBatsmen'),
-                                                                 ),
-
-                                                                 column(7, offset=4,
-                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                        tags$h5((tags$i("Oct 11, 2021"))),
-                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                 )
-                                                             )
-                                                    ),
+                                                    # tabPanel("Rank  PSL Batsmen",
+                                                    #
+                                                    #          h4('Rank  PSL Batsmen '),
+                                                    #          sidebarPanel(
+                                                    #
+                                                    #              sliderInput("minMatchesPSL", "Matches played",
+                                                    #                          min = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]),
+                                                    #                          max = (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]),
+                                                    #                          value =round(((helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]) +
+                                                    #                                            (helper(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]))/2)
+                                                    #              ),
+                                                    #              uiOutput("ModePSL"),
+                                                    #              uiOutput("dateRange5PSL")
+                                                    #
+                                                    #          ),
+                                                    #          mainPanel(
+                                                    #              shinycssloaders::withSpinner(
+                                                    #                  uiOutput('rankPSLBatsmen'),
+                                                    #              ),
+                                                    #
+                                                    #              column(7, offset=4,
+                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                    #              )
+                                                    #          )
+                                                    # ),
                                                     # Rank PSL Bowlers tab
                                                     tabPanel("Rank PSL Bowlers",
 
@@ -1436,33 +1436,33 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                      ),
                                                      # Rank WBB PlayersL tab
-                                                     tabPanel("Rank WBB Batsmen",
-                                                              h4('Rank  WBB Batsmen '),
-                                                              sidebarPanel(
-
-                                                                  sliderInput("minMatchesWBB", "Matches played",
-                                                                              #min = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]),
-                                                                              #max = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[4]]),
-                                                                              #value =round(((helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]) +
-                                                                             #                   (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]))/2)
-                                                                  ),
-                                                                  uiOutput("ModeWBB"),
-                                                                  uiOutput("dateRange5WBB")
-
-                                                              ),
-                                                              mainPanel(
-                                                                  shinycssloaders::withSpinner(
-                                                                      uiOutput('rankWBBBatsmen'),
-                                                                  ),
-
-                                                                  column(7, offset=4,
-                                                                         tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                         tags$h5((tags$i("Oct 11, 2021"))),
-                                                                         tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                         tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                  )
-                                                              )
-                                                     ),
+                                                     # tabPanel("Rank WBB Batsmen",
+                                                     #          h4('Rank  WBB Batsmen '),
+                                                     #          sidebarPanel(
+                                                     #
+                                                     #              sliderInput("minMatchesWBB", "Matches played",
+                                                     #                          min = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]),
+                                                     #                          max = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[4]]),
+                                                     #                          value =round(((helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]) +
+                                                     #                                            (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]))/2)
+                                                     #              ),
+                                                     #              uiOutput("ModeWBB"),
+                                                     #              uiOutput("dateRange5WBB")
+                                                     #
+                                                     #          ),
+                                                     #          mainPanel(
+                                                     #              shinycssloaders::withSpinner(
+                                                     #                  uiOutput('rankWBBBatsmen'),
+                                                     #              ),
+                                                     #
+                                                     #              column(7, offset=4,
+                                                     #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                     #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                     #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                     #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                     #              )
+                                                     #          )
+                                                     # ),
                                                      # Rank WBB Bowlers tab
                                                      tabPanel("Rank WBB Bowlers",
 
@@ -1638,34 +1638,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank CPL Players tab
-                                                    tabPanel("Rank  CPL Batsmen",
-
-                                                             h4('Rank  CPL Batsmen '),
-                                                             sidebarPanel(
-
-                                                                 sliderInput("minMatchesCPL", "Matches played",
-                                                                             #min = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]) +
-                                                                             #                  (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]))/2)
-                                                                 ),
-                                                                 uiOutput("ModeCPL"),
-                                                                 uiOutput("dateRange5CPL")
-
-                                                             ),
-                                                             mainPanel(
-                                                                 shinycssloaders::withSpinner(
-                                                                     uiOutput('rankCPLBatsmen'),
-                                                                 ),
-
-                                                                 column(7, offset=4,
-                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                        tags$h5((tags$i("Oct 11, 2021"))),
-                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                 )
-                                                             )
-                                                    ),
+                                                    # tabPanel("Rank  CPL Batsmen",
+                                                    #
+                                                    #          h4('Rank  CPL Batsmen '),
+                                                    #          sidebarPanel(
+                                                    #
+                                                    #              sliderInput("minMatchesCPL", "Matches played",
+                                                    #                          min = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]),
+                                                    #                          max = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[4]]),
+                                                    #                          value =round(((helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]) +
+                                                    #                                            (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]))/2)
+                                                    #              ),
+                                                    #              uiOutput("ModeCPL"),
+                                                    #              uiOutput("dateRange5CPL")
+                                                    #
+                                                    #          ),
+                                                    #          mainPanel(
+                                                    #              shinycssloaders::withSpinner(
+                                                    #                  uiOutput('rankCPLBatsmen'),
+                                                    #              ),
+                                                    #
+                                                    #              column(7, offset=4,
+                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                    #              )
+                                                    #          )
+                                                    # ),
                                                     # Rank CPL Bowlers tab
                                                     tabPanel("Rank CPL Bowlers",
 
@@ -1842,34 +1842,34 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank SSM Players tab
-                                                    tabPanel("Rank  SSM Batsmen",
-
-                                                             h4('Rank  SSM Batsmen '),
-                                                             sidebarPanel(
-
-                                                                 sliderInput("minMatchesSSM", "Matches played",
-                                                                             #min = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]),
-                                                                             #max = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[4]]),
-                                                                             #value =round(((helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]) +
-                                                                             #                  (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]))/2)
-                                                                 ),
-                                                                 uiOutput("ModeSSM"),
-                                                                 uiOutput("dateRange5SSM")
-
-                                                             ),
-                                                             mainPanel(
-                                                                 shinycssloaders::withSpinner(
-                                                                     uiOutput('rankSSMBatsmen'),
-                                                                 ),
-
-                                                                 column(7, offset=4,
-                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                                        tags$h5((tags$i("Oct 11, 2021"))),
-                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                                 )
-                                                             )
-                                                    ),
+                                                    # tabPanel("Rank  SSM Batsmen",
+                                                    #
+                                                    #          h4('Rank  SSM Batsmen '),
+                                                    #          sidebarPanel(
+                                                    #
+                                                    #              sliderInput("minMatchesSSM", "Matches played",
+                                                    #                          min = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]),
+                                                    #                          max = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[4]]),
+                                                    #                          value =round(((helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]) +
+                                                    #                                            (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]))/2)
+                                                    #              ),
+                                                    #              uiOutput("ModeSSM"),
+                                                    #              uiOutput("dateRange5SSM")
+                                                    #
+                                                    #          ),
+                                                    #          mainPanel(
+                                                    #              shinycssloaders::withSpinner(
+                                                    #                  uiOutput('rankSSMBatsmen'),
+                                                    #              ),
+                                                    #
+                                                    #              column(7, offset=4,
+                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
+                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                    #              )
+                                                    #          )
+                                                    # ),
                                                     # Rank SSM Bowlers tab
                                                     tabPanel("Rank SSM Bowlers",
 
