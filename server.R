@@ -46,6 +46,7 @@ source("teamPerfOverallHelper.R")
 source("batsmanHelper.R")
 source("bowlerHelper.R")
 source("printOrPlotT20BattingPerf.R")
+source("printOrPlotT20BowlingPerf.R")
 shinyServer(function(input, output,session) {
 
   output$dateRange3 <- renderUI({
@@ -366,7 +367,7 @@ shinyServer(function(input, output,session) {
   # Rank IPL Bowlers
 
   output$dateRange6<- renderUI({
-    m <- helper2(IPLTeamNames, "./ipl/iplBattingBowlingDetails")
+    m <- helper2(IPLTeamNames, "./ipl/iplPerformance","IPL")
     dateRangeInput("dateRange6", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -379,30 +380,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6[1],
                          end   = input$dateRange6[2])
     updateSliderInput(session, "minMatches1", # Set slider at 75$ between min & max
-                      min=(helper3(IPLTeamNames, input$dateRange6, "./ipl/iplBattingBowlingDetails")[[1]]),
-                      max = (helper3(IPLTeamNames, input$dateRange6, "./ipl/iplBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(IPLTeamNames, input$dateRange6, "./ipl/iplBattingBowlingDetails")[[1]]) +
-                                      (helper3(IPLTeamNames, input$dateRange6, "./ipl/iplBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(IPLTeamNames, input$dateRange6, "./ipl/iplPerformance","IPL")[[1]]),
+                      max = (helper3(IPLTeamNames, input$dateRange6, "./ipl/iplPerformance","IPL")[[2]]),
+                      value =round(((helper3(IPLTeamNames, input$dateRange6, "./ipl/iplPerformance","IPL")[[1]]) +
+                                      (helper3(IPLTeamNames, input$dateRange6, "./ipl/iplPerformance","IPL")[[2]]))/1.333))
+  })
+
+  output$IPLBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"IPL")
+
+  })
+
+  output$IPLBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"IPL")
+
   })
 
   # Analyze and display IPL Match table
-  output$IPLRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"IPL","bowlers")
-    head(a,20)
+  output$IPLBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"IPL")
+    a
+
   })
-
   # Output either a table or a plot
-  output$rankIPLBowlers <-  renderUI({
+  output$plotOrPrintIPLBowlingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-
-    if(is.data.frame(a <- rankPlayers(input, output,"IPL","bowlers"))){
-      tableOutput("IPLRankBowlersPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"IPL"))){
+      tableOutput("IPLBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4 == 1){
+        plotOutput("IPLBowlingPerfPlots")
+      } else{
+        plotlyOutput("IPLBowlingPerfPlotly")
+      }
 
     }
-  })
 
+  })
 
 
 

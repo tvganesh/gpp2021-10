@@ -83,8 +83,8 @@ printOrPlotT20BowlingPerf <- function(input,output,type="IPL"){
     if(type == "IPL"){
 
         print("Date ok")
-        if(input$T20PerfFunc == "IPL batsmen rank")
-            a <-rankT20Bowlers("./ipl/IPLPerformance",input$minMatches, input$dateRange5,input$wicketsOverER,"IPL")
+        if(input$T20BowlingPerfFunc == "IPL bowlers rank")
+            a <-rankT20Bowlers("./ipl/iplPerformance",input$minMatches1, input$dateRange6,input$wicketsOverER,"IPL")
         # else if(input$T20PerfFunc == "IPL Runs vs SR plot")
         #     a <- overallRunsSRPlotT20M("./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",plot=1)
         # else if(input$T20PerfFunc == "IPL Runs vs SR Powerplay plot")
