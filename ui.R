@@ -212,7 +212,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                   tabPanel("IPL Performance Analysis",
                                                                           #h4("IPL Performance analysis"),
                                                                           sidebarPanel(
-                                                                              selectInput('T20PerfFunc', 'Select function', T20OverallPerfFunc),
+                                                                              selectInput('T20BattingPerfFunc', 'Select function', T20OverallBattingPerfFunc),
                                                                               sliderInput("minMatches", "Matches played",
 
                                                                                           min = (helper(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]),
@@ -222,7 +222,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                               ),
                                                                               uiOutput("Mode"),
                                                                               uiOutput("dateRange5"),
-                                                                              radioButtons("plotOrTable9", label = h4("Plot(static,interactive) or table"),
+                                                                              radioButtons("plotOrTable3", label = h4("Plot(static,interactive) or table"),
                                                                                            choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
                                                                                            selected = 2,inline=T)
 
@@ -242,18 +242,21 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                  ),
                                                                  # Rank IPL Bowlers tab
                                                                  tabPanel("Rank IPL Bowlers",
-                                                                          br(),
-                                                                          br(),
-                                                                          br(),                                                                         h4('Rank IPL Bowlers'),
+                                                                        h4('Rank IPL Bowlers'),
 
                                                                           sidebarPanel(
+                                                                              selectInput('T20BowlingPerfFunc', 'Select function', T20OverallBowlingPerfFunc),
                                                                               sliderInput("minMatches1", "Matches played",
                                                                                           min = (helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]),
                                                                                           max = (helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]),
-                                                                                          value =round(((helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) + (helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
+                                                                                          value =round(((helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[3]]) +
+                                                                                                            (helper2(IPLTeamNames,"./ipl/iplBattingBowlingDetails")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode1"),
-                                                                              uiOutput("dateRange6")
+                                                                              uiOutput("dateRange6"),
+                                                                              radioButtons("plotOrTable4", label = h4("Plot(static,interactive) or table"),
+                                                                                           choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                                           selected = 2,inline=T)
 
                                                                           ),
                                                                           mainPanel(

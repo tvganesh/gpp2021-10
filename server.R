@@ -329,7 +329,7 @@ shinyServer(function(input, output,session) {
       tableOutput("IPLBattingPerfPrint")
     }
     else{ #Else plot
-      if(input$plotOrTable == 1){
+      if(input$plotOrTable3 == 1){
         plotOutput("IPLBattingPerfPlots")
       } else{
         plotlyOutput("IPLBattingPerfPlotly")
