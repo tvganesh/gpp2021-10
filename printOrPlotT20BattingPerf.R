@@ -83,16 +83,16 @@ printOrPlotT20BattingPerf <- function(input,output,type="IPL"){
     if(type == "IPL"){
 
           print("Date ok")
-          if(input$T20BattingPerfFunc == "IPL batsmen rank")
+          if(input$T20BattingPerfFunc == "Overall batsmen rank")
             a <-rankT20Batsmen("./ipl/IPLPerformance",input$minMatches, input$dateRange5,input$runsOverSR,"IPL")
-          else if(input$T20BattingPerfFunc == "IPL Runs vs SR plot")
-            a <- overallRunsSRPlotT20M("./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",input$plotOrTable3)
-          else if(input$T20BattingPerfFunc == "IPL Runs vs SR Powerplay plot")
-            a <- overallRunsSRPPowerplayPlotT20M("./ipl/IPLPerformance",input$dateRange5,"IPL",input$plotOrTable3)
-          else if(input$T20BattingPerfFunc == "IPL Runs vs SR Middle overs plot")
-            a <- overallRunsSRMiddleOversPlotT20M("./ipl/IPLPerformance", input$dateRange5,"IPL",input$plotOrTable3)
-          else if(input$T20BattingPerfFunc == "IPL Runs vs SR Death overs plot")
-            a <- overallRunsSRDeathOversPlotT20M("./ipl/IPLPerformance", input$dateRange5,"IPL",input$plotOrTable3)
+          else if(input$T20BattingPerfFunc == "Overall Runs vs SR plot")
+            a <- overallRunsSRPlotT20("./ipl/IPLPerformance",input$minMatches, input$dateRange5,"IPL",input$plotOrTable3)
+          else if(input$T20BattingPerfFunc == "Overall Runs vs SR Powerplay plot")
+            a <- overallRunsSRPPowerplayPlotT20("./ipl/IPLPerformance",input$dateRange5,"IPL",input$plotOrTable3)
+          else if(input$T20BattingPerfFunc == "Overall Runs vs SR Middle overs plot")
+            a <- overallRunsSRMiddleOversPlotT20("./ipl/IPLPerformance", input$dateRange5,"IPL",input$plotOrTable3)
+          else if(input$T20BattingPerfFunc == "Overall Runs vs SR Death overs plot")
+            a <- overallRunsSRDeathOversPlotT20("./ipl/IPLPerformance", input$dateRange5,"IPL",input$plotOrTable3)
 
     head(a)
     a
