@@ -120,7 +120,10 @@ T20OverallBattingPerfFunc <- c("IPL batsmen rank",
 
 # T20 bowling functions
 T20OverallBowlingPerfFunc <- c("IPL bowlers rank",
-                               "IPL Wickets vs ER plot")
+                               "IPL Wickets vs ER plot",
+                               "IPL Wickets vs ER Powerplay plot",
+                               "IPL Wickets vs ER Middle overs plot",
+                               "IPL Wickets vs ER Death overs plot")
 
 # Runs vs Strike Rate
 runsVsSR = c("Runs over Strike rate", "Strike rate over Runs")
