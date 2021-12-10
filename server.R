@@ -1675,7 +1675,7 @@ shinyServer(function(input, output,session) {
 
   # Display ranks
   output$dateRange5NTB<- renderUI({
-    m <- helper(NTBTeamNames, "./ntb/ntbBattingBowlingDetails")
+    m <- helper(NTBTeamNames, "./ntb/ntbPerformance","NTB")
     dateRangeInput("dateRange5NTB", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1694,27 +1694,43 @@ shinyServer(function(input, output,session) {
                                       (helper1(NTBTeamNames, input$dateRange5NTB, "./ntb/ntbPerformance","NTB")[[2]]))/1.333))
   })
 
-  # Analyze and display NTB Match table
-  output$NTBRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"NTB","batsmen")
-    head(a,20)
+  output$NTBBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"NTB")
+
   })
 
+  output$NTBBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"NTB")
+
+  })
+
+  # Analyze and display NTB Match table
+  output$NTBBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"NTB")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankNTBBatsmen <-  renderUI({
+  output$plotOrPrintNTBBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"NTB","batsmen"))){
-      tableOutput("NTBRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"NTB"))){
+      tableOutput("NTBBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("NTBBattingPerfPlots")
+      } else{
+        plotlyOutput("NTBBattingPerfPlotly")
+      }
 
     }
+
   })
 
   ########################################
   # Rank NTB Bowlers
   output$dateRange6NTB<- renderUI({
-    m <- helper2(NTBTeamNames, "./ntb/ntbBattingBowlingDetails")
+    m <- helper2(NTBTeamNames, "./ntb/ntbPerformance","NTB")
     dateRangeInput("dateRange6NTB", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1727,28 +1743,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6NTB[1],
                          end   = input$dateRange6NTB[2])
     updateSliderInput(session, "minMatches1NTB", # Set slider at 75$ between min & max
-                      min=(helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbBattingBowlingDetails")[[1]]),
-                      max = (helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbBattingBowlingDetails")[[1]]) +
-                                      (helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbPerformance","NTB")[[1]]),
+                      max = (helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbPerformance","NTB")[[2]]),
+                      value =round(((helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbPerformance","NTB")[[1]]) +
+                                      (helper3(NTBTeamNames, input$dateRange6NTB, "./ntb/ntbPerformance","NTB")[[2]]))/1.333))
   })
 
   # Analyze and display NTB Match table
-  output$NTBRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"NTB","bowlers")
-    head(a,20)
+  output$NTBBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"NTB")
+
   })
 
-  # Output either a table or a plot
-  output$rankNTBBowlers <-  renderUI({
-    # Check if output is a dataframe. If so, print
+  output$NTBBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"NTB")
 
-    if(is.data.frame(a <- rankPlayers(input, output,"NTB","bowlers"))){
-      tableOutput("NTBRankBowlersPrint")
+  })
+
+  # Analyze and display NTB Match table
+  output$NTBBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"NTB")
+    a
+
+  })
+  # Output either a table or a plot
+  output$plotOrPrintNTBBowlingPerf <-  renderUI({
+    # Check if output is a dataframe. If so, print
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"NTB"))){
+      tableOutput("NTBBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4NTB == 1){
+        plotOutput("NTBBowlingPerfPlots")
+      } else{
+        plotlyOutput("NTBBowlingPerfPlotly")
+      }
 
     }
+
   })
 
   ############################################ PSL ##############################################

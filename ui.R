@@ -1026,61 +1026,68 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
 
                                                     ),
-                                                    # Rank NTB Players tab
-                                                    # tabPanel("Rank  NTB Batsmen",
-                                                    #
-                                                    #          h4('Rank  NTB Batsmen '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatchesNTB", "Matches played",
-                                                    #                          min = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) +
-                                                    #                                            (helper(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("ModeNTB"),
-                                                    #              uiOutput("dateRange5NTB")
-                                                    #
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankNTBBatsmen'),
-                                                    #              ),
-                                                    #
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # ),
+                                                    # NTB Players tab
+                                                    tabPanel("NTB Batsmen Overall",
+
+                                                             h4('NTB Batsmen Overall '),
+                                                             sidebarPanel(
+                                                                 selectInput('T20BattingPerfFuncNTB', 'Select function', T20OverallBattingPerfFunc),
+                                                                 sliderInput("minMatchesNTB", "Matches played",
+                                                                             min = (helper(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[3]]),
+                                                                             max = (helper(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[4]]),
+                                                                             value =round(((helper(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[3]]) +
+                                                                                               (helper(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[3]]))/2)
+                                                                 ),
+                                                                 uiOutput("ModeNTB"),
+                                                                 uiOutput("dateRange5NTB"),
+                                                                 radioButtons("plotOrTable3NTB", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintNTBBattingPerf'),
+                                                                 ),
+
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    ),
                                                     # Rank NTB Bowlers tab
-                                                    # tabPanel("Rank NTB Bowlers",
-                                                    #
-                                                    #          h4('Rank NTB Bowlers '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatches1NTB", "Matches played",
-                                                    #                          min = (helper2(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper2(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper2(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[3]]) + (helper2(NTBTeamNames,"./ntb/ntbBattingBowlingDetails")[[4]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("Mode1NTB"),
-                                                    #              uiOutput("dateRange6NTB")
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankNTBBowlers'),
-                                                    #              ),
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # )
+                                                    tabPanel("NTB Bowlers",
+
+                                                             h4('NTB Bowlers overall'),
+                                                             sidebarPanel(
+                                                                 selectInput('T20BowlingPerfFuncNTB', 'Select function', T20OverallBowlingPerfFunc),
+                                                                 sliderInput("minMatches1NTB", "Matches played",
+                                                                             min = (helper2(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[3]]),
+                                                                             max = (helper2(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[4]]),
+                                                                             value =round(((helper2(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[3]]) +
+                                                                                               (helper2(NTBTeamNames,"./ntb/ntbPerformance","NTB")[[4]]))/2)
+                                                                 ),
+                                                                 uiOutput("Mode1NTB"),
+                                                                 uiOutput("dateRange6NTB"),
+                                                                 radioButtons("plotOrTable4NTB", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintNTBBowlingPerf'),
+                                                                 ),
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    )
 
                       )),
                       ############################# PSL T20 ################################
