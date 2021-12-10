@@ -1447,33 +1447,36 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                      ),
                                                      # Rank WBB PlayersL tab
-                                                     # tabPanel("Rank WBB Batsmen",
-                                                     #          h4('Rank  WBB Batsmen '),
-                                                     #          sidebarPanel(
-                                                     #
-                                                     #              sliderInput("minMatchesWBB", "Matches played",
-                                                     #                          min = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]),
-                                                     #                          max = (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[4]]),
-                                                     #                          value =round(((helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]) +
-                                                     #                                            (helper(WBBTeamNames,"./wbb/wbbBattingBowlingDetails")[[3]]))/2)
-                                                     #              ),
-                                                     #              uiOutput("ModeWBB"),
-                                                     #              uiOutput("dateRange5WBB")
-                                                     #
-                                                     #          ),
-                                                     #          mainPanel(
-                                                     #              shinycssloaders::withSpinner(
-                                                     #                  uiOutput('rankWBBBatsmen'),
-                                                     #              ),
-                                                     #
-                                                     #              column(7, offset=4,
-                                                     #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                     #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                     #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                     #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                     #              )
-                                                     #          )
-                                                     # ),
+                                                     tabPanel("Rank WBB Batsmen",
+                                                              h4('Rank  WBB Batsmen '),
+                                                              sidebarPanel(
+                                                                  selectInput('T20BattingPerfFuncWBB', 'Select function', T20OverallBattingPerfFunc),
+                                                                  sliderInput("minMatchesWBB", "Matches played",
+                                                                              min = (helper(WBBTeamNames,"./wbb/wbbPerformance","WBB")[[3]]),
+                                                                              max = (helper(WBBTeamNames,"./wbb/wbbPerformance","WBB")[[4]]),
+                                                                              value =round(((helper(WBBTeamNames,"./wbb/wbbPerformance","WBB")[[3]]) +
+                                                                                                (helper(WBBTeamNames,"./wbb/wbbPerformance","WBB")[[3]]))/2)
+                                                                  ),
+                                                                  uiOutput("ModeWBB"),
+                                                                  uiOutput("dateRange5WBB"),
+                                                                  radioButtons("plotOrTable3WBB", label = h4("Plot(static,interactive) or table"),
+                                                                               choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                               selected = 2,inline=T)
+
+                                                              ),
+                                                              mainPanel(
+                                                                  shinycssloaders::withSpinner(
+                                                                      uiOutput('plotOrPrintWBBBattingPerf'),
+                                                                  ),
+
+                                                                  column(7, offset=4,
+                                                                         tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                         tags$h5((tags$i("Oct 11, 2021"))),
+                                                                         tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                         tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                  )
+                                                              )
+                                                     ),
                                                      # Rank WBB Bowlers tab
                                                      # tabPanel("Rank WBB Bowlers",
                                                      #

@@ -2365,7 +2365,7 @@ shinyServer(function(input, output,session) {
 
   # Display ranks
   output$dateRange5WBB<- renderUI({
-    m <- helper(WBBTeamNames, "./wbb/wbbBattingBowlingDetails")
+    m <- helper(WBBTeamNames, "./wbb/wbbPerformance","WBB")
     dateRangeInput("dateRange5WBB", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -2384,21 +2384,37 @@ shinyServer(function(input, output,session) {
                                       (helper1(WBBTeamNames, input$dateRange5WBB, "./wbb/wbbPerformance","WBB")[[2]]))/1.333))
   })
 
-  # Analyze and display WBB Match table
-  output$WBBRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"WBB","batsmen")
-    head(a,20)
+  output$WBBBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"WBB")
+
   })
 
+  output$WBBBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"WBB")
+
+  })
+
+  # Analyze and display WBB Match table
+  output$WBBBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"WBB")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankWBBBatsmen <-  renderUI({
+  output$plotOrPrintWBBBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"WBB","batsmen"))){
-      tableOutput("WBBRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"WBB"))){
+      tableOutput("WBBBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("WBBBattingPerfPlots")
+      } else{
+        plotlyOutput("WBBBattingPerfPlotly")
+      }
 
     }
+
   })
   #Rank bowlers
   output$dateRange6WBB<- renderUI({
