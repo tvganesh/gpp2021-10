@@ -2013,14 +2013,14 @@ shinyServer(function(input, output,session) {
     }
   })
 
-  ################################ Rank PSL ##############################
+  ################################ Overall PSL ##############################
   # Analyze overall PSL team performance plots
 
 
 
   # Display ranks
   output$dateRange5PSL<- renderUI({
-    m <- helper(PSLTeamNames, "./psl/pslBattingBowlingDetails")
+    m <- helper(PSLTeamNames, "./psl/pslPerformance","PSL")
     dateRangeInput("dateRange5PSL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -2039,21 +2039,37 @@ shinyServer(function(input, output,session) {
                                       (helper1(PSLTeamNames, input$dateRange5PSL, "./psl/pslPerformance","PSL")[[2]]))/1.333))
   })
 
-  # Analyze and display PSL Match table
-  output$PSLRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"PSL","batsmen")
-    head(a,20)
+  output$PSLBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"PSL")
+
   })
 
+  output$PSLBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"PSL")
+
+  })
+
+  # Analyze and display PSL Match table
+  output$PSLBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"PSL")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankPSLBatsmen <-  renderUI({
+  output$plotOrPrintPSLBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"PSL","batsmen"))){
-      tableOutput("PSLRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"PSL"))){
+      tableOutput("PSLBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("PSLBattingPerfPlots")
+      } else{
+        plotlyOutput("PSLBattingPerfPlotly")
+      }
 
     }
+
   })
 
   ########################################
