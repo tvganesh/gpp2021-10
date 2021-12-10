@@ -1331,10 +1331,10 @@ shinyServer(function(input, output,session) {
   })
 
 
-  ################################ Rank BBL ##############################
+  ################################ BBL Overall Analysis ##############################
 
   output$dateRange5BBL<- renderUI({
-    m <- helper(BBLTeamNames, "./bbl/bblBattingBowlingDetails")
+    m <- helper(BBLTeamNames, "./bbl/bblPerformance","BBL")
     dateRangeInput("dateRange5BBL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1353,21 +1353,37 @@ shinyServer(function(input, output,session) {
                                       (helper1(BBLTeamNames, input$dateRange5BBL, "./bbl/bblPerformance","BBL")[[2]]))/1.333))
   })
 
-  # Analyze and display BBL Match table
-  output$BBLRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"BBL","batsmen")
-    head(a,20)
+  output$BBLBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"BBL")
+
   })
 
+  output$BBLBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"BBL")
+
+  })
+
+  # Analyze and display BBL Match table
+  output$BBLBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"BBL")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankBBLBatsmen <-  renderUI({
+  output$plotOrPrintBBLBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"BBL","batsmen"))){
-      tableOutput("BBLRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"BBL"))){
+      tableOutput("BBLBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("BBLBattingPerfPlots")
+      } else{
+        plotlyOutput("BBLBattingPerfPlotly")
+      }
 
     }
+
   })
 
   ########################################
