@@ -95,8 +95,20 @@ printOrPlotT20BowlingPerf <- function(input,output,type="IPL"){
          else if(input$T20BowlingPerfFunc == "Overall Wickets vs ER Death overs plot")
              a <- overallWicketsERDeathOversPlotT20("./ipl/iplPerformance", input$dateRange6,"IPL",input$plotOrTable4)
 
-        head(a)
-        a
+
+    } else if (type == "T20M"){
+        if(input$T20BowlingPerfFuncT20M == "Overall bowlers rank")
+            a <-rankT20Bowlers("./t20/t20Performance",input$minMatches1T20M, input$dateRange6T20M,input$wicketsOverERT20M,"T20M")
+        else if(input$T20BowlingPerfFuncT20M == "Overall Wickets vs ER plot")
+            a <- overallWicketsERPlotT20("./t20/t20Performance",input$minMatches1T20M, input$dateRange6T20M,"T20M",input$plotOrTable4T20M)
+        else if(input$T20BowlingPerfFuncT20M == "Overall Wickets vs ER Powerplay plot")
+            a <- overallWicketsERPowerPlayPlotT20("./t20/t20Performance",input$dateRange6T20M,"T20M",input$plotOrTable4T20M)
+        else if(input$T20BowlingPerfFuncT20M == "Overall Wickets vs ER Middle overs plot")
+            a <- overallWicketsERMiddleOversPlotT20("./t20/t20Performance", input$dateRange6T20M,"T20M",input$plotOrTable4T20M)
+        else if(input$T20BowlingPerfFuncT20M == "Overall Wickets vs ER Death overs plot")
+            a <- overallWicketsERDeathOversPlotT20("./t20/t20Performance", input$dateRange6T20M,"T20M",input$plotOrTable4T20M)
 
     }
+    head(a)
+    a
 }

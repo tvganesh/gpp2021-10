@@ -219,10 +219,10 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                           sidebarPanel(
                                                                               selectInput('T20BowlingPerfFunc', 'Select function', T20OverallBowlingPerfFunc),
                                                                               sliderInput("minMatches1", "Matches played",
-                                                                                          min = (helper2(IPLTeamNames,"./ipl/iplPerformance")[[3]]),
-                                                                                          max = (helper2(IPLTeamNames,"./ipl/iplPerformance")[[4]]),
-                                                                                          value =round(((helper2(IPLTeamNames,"./ipl/iplPerformance")[[3]]) +
-                                                                                                            (helper2(IPLTeamNames,"./ipl/iplPerformance")[[4]]))/2)
+                                                                                          min = (helper2(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]),
+                                                                                          max = (helper2(IPLTeamNames,"./ipl/iplPerformance","IPL")[[4]]),
+                                                                                          value =round(((helper2(IPLTeamNames,"./ipl/iplPerformance","IPL")[[3]]) +
+                                                                                                            (helper2(IPLTeamNames,"./ipl/iplPerformance","IPL")[[4]]))/2)
                                                                               ),
                                                                               uiOutput("Mode1"),
                                                                               uiOutput("dateRange6"),
@@ -397,7 +397,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                             ),
                                                             #  Overall T20 Men tab
-                                                            tabPanel("Overall  Intl. T20 Batsmen  (men)",
+                                                            tabPanel("Overall T20 Batsmen  (men)",
 
                                                                      h4('Intl. T20 Batsmen (men) performance'),
                                                                      sidebarPanel(
@@ -427,35 +427,36 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                          )
                                                                      )
                                                             ),
-                                                            # Rank T20 Bowlers(men) tab
-                                                            # tabPanel("Rank Intl. T20 Bowlers (men)",
-                                                            #          br(),
-                                                            #          br(),
-                                                            #          br(),
-                                                            #          br(),
-                                                            #          br(),
-                                                            #          h4('Rank Intl. T20 Bowlers (men)'),
-                                                            #          sidebarPanel(
-                                                            #              sliderInput("minMatches1T20M", "Matches played",
-                                                            #                          min = (helper2(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]),
-                                                            #                          max = (helper2(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]),
-                                                            #                          value =round(((helper2(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[3]]) + (helper2(T20MTeamNames,"./t20/t20BattingBowlingDetails")[[4]]))/2)
-                                                            #              ),
-                                                            #              uiOutput("Mode1T20M"),
-                                                            #              uiOutput("dateRange6T20M")
-                                                            #          ),
-                                                            #          mainPanel(
-                                                            #              shinycssloaders::withSpinner(
-                                                            #                  uiOutput('rankT20MBowlers'),
-                                                            #              ),
-                                                            #              column(7, offset=4,
-                                                            #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                            #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                            #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                            #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                            #              )
-                                                            #          )
-                                                            # )
+                                                            # Overall T20 Bowlers(men) tab
+                                                            tabPanel("Intl. T20 Bowlers (men) performance",
+
+                                                                     h4('Intl. T20 Bowlers (men) performance'),
+                                                                     sidebarPanel(
+                                                                         selectInput('T20BowlingPerfFuncT20M', 'Select function', T20OverallBowlingPerfFunc),
+                                                                                       sliderInput("minMatches1T20M", "Matches played",
+                                                                                                   min = (helper2(T20MTeamNames,"./t20/t20Performance","T20M")[[3]]),
+                                                                                                   max = (helper2(T20MTeamNames,"./t20/t20Performance","T20M")[[4]]),
+                                                                                                   value =round(((helper2(T20MTeamNames,"./t20/t20Performance","T20M")[[3]]) +
+                                                                                                                     (helper2(T20MTeamNames,"./t20/t20Performance","T20M")[[4]]))/2)
+                                                                                       ),
+                                                                         uiOutput("Mode1T20M"),
+                                                                         uiOutput("dateRange6T20M"),
+                                                                         radioButtons("plotOrTable4T20M", label = h4("Plot(static,interactive) or table"),
+                                                                                      choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                                      selected = 2,inline=T)
+                                                                     ),
+                                                                     mainPanel(
+                                                                         shinycssloaders::withSpinner(
+                                                                             uiOutput('plotOrPrintIPLBowlingPerfT20M'),
+                                                                         ),
+                                                                         column(7, offset=4,
+                                                                                tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                                tags$h5((tags$i("Oct 11, 2021"))),
+                                                                                tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                                tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                         )
+                                                                     )
+                                                            )
 
                       )),
                       ############################# International T20 (Women) ################################
