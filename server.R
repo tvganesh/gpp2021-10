@@ -2416,9 +2416,9 @@ shinyServer(function(input, output,session) {
     }
 
   })
-  #Rank bowlers
+  ################################################Rank bowlers
   output$dateRange6WBB<- renderUI({
-    m <- helper2(WBBTeamNames, "./wbb/wbbBattingBowlingDetails")
+    m <- helper2(WBBTeamNames, "./wbb/wbbPerformance","WBB")
     dateRangeInput("dateRange6WBB", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -2431,28 +2431,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6WBB[1],
                          end   = input$dateRange6WBB[2])
     updateSliderInput(session, "minMatches1WBB", # Set slider at 75$ between min & max
-                      min=(helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbBattingBowlingDetails")[[1]]),
-                      max = (helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbBattingBowlingDetails")[[1]]) +
-                                      (helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbPerformance","WBB")[[1]]),
+                      max = (helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbPerformance","WBB")[[2]]),
+                      value =round(((helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbPerformance","WBB")[[1]]) +
+                                      (helper3(WBBTeamNames, input$dateRange6WBB, "./wbb/wbbPerformance","WBB")[[2]]))/1.333))
   })
 
   # Analyze and display WBB Match table
-  output$WBBRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"WBB","bowlers")
-    head(a,20)
+  output$WBBBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"WBB")
+
   })
 
-  # Output either a table or a plot
-  output$rankWBBBowlers <-  renderUI({
-    # Check if output is a dataframe. If so, print
+  output$WBBBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"WBB")
 
-    if(is.data.frame(a <- rankPlayers(input, output,"WBB","bowlers"))){
-      tableOutput("WBBRankBowlersPrint")
+  })
+
+  # Analyze and display WBB Match table
+  output$WBBBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"WBB")
+    a
+
+  })
+  # Output either a table or a plot
+  output$plotOrPrintWBBBowlingPerf <-  renderUI({
+    # Check if output is a dataframe. If so, print
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"WBB"))){
+      tableOutput("WBBBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4WBB == 1){
+        plotOutput("WBBBowlingPerfPlots")
+      } else{
+        plotlyOutput("WBBBowlingPerfPlotly")
+      }
 
     }
+
   })
 
   ##########################################################################################
