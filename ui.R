@@ -1269,31 +1269,35 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank PSL Bowlers tab
-                                                    # tabPanel("Rank PSL Bowlers",
-                                                    #
-                                                    #          h4('Rank PSL Bowlers '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatches1PSL", "Matches played",
-                                                    #                          min = (helper2(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper2(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper2(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[3]]) + (helper2(PSLTeamNames,"./psl/pslBattingBowlingDetails")[[4]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("Mode1PSL"),
-                                                    #              uiOutput("dateRange6PSL")
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankPSLBowlers'),
-                                                    #              ),
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # )
+                                                    tabPanel("PSL Bowlers",
+
+                                                             h4('PSL Bowlers '),
+                                                             sidebarPanel(
+                                                                 selectInput('T20BowlingPerfFuncPSL', 'Select function', T20OverallBowlingPerfFunc),
+                                                                 sliderInput("minMatches1PSL", "Matches played",
+                                                                             min = (helper2(PSLTeamNames,"./psl/pslPerformance","PSL")[[3]]),
+                                                                             max = (helper2(PSLTeamNames,"./psl/pslPerformance","PSL")[[4]]),
+                                                                             value =round(((helper2(PSLTeamNames,"./psl/pslPerformance","PSL")[[3]]) +
+                                                                                               (helper2(PSLTeamNames,"./psl/pslPerformance","PSL")[[4]]))/2)
+                                                                 ),
+                                                                 uiOutput("Mode1PSL"),
+                                                                 uiOutput("dateRange6PSL"),
+                                                                 radioButtons("plotOrTable4PSL", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintPSLBowlingPerf'),
+                                                                 ),
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    )
 
                       )),
                       ############################# WBB T20 ################################

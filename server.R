@@ -2075,7 +2075,7 @@ shinyServer(function(input, output,session) {
   ########################################
   # Rank PSL Bowlers
   output$dateRange6PSL<- renderUI({
-    m <- helper2(PSLTeamNames, "./psl/pslBattingBowlingDetails")
+    m <- helper2(PSLTeamNames, "./psl/pslPerformance","PSL")
     dateRangeInput("dateRange6PSL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -2088,30 +2088,45 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6PSL[1],
                          end   = input$dateRange6PSL[2])
     updateSliderInput(session, "minMatches1PSL", # Set slider at 75$ between min & max
-                      min=(helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslBattingBowlingDetails")[[1]]),
-                      max = (helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslBattingBowlingDetails")[[1]]) +
-                                      (helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslPerformance","PSL")[[1]]),
+                      max = (helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslPerformance","PSL")[[2]]),
+                      value =round(((helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslPerformance","PSL")[[1]]) +
+                                      (helper3(PSLTeamNames, input$dateRange6PSL, "./psl/pslPerformance","PSL")[[2]]))/1.333))
   })
 
   # Analyze and display PSL Match table
-  output$PSLRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"PSL","bowlers")
-    head(a,20)
+  output$PSLBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"PSL")
+
   })
 
-  # Output either a table or a plot
-  output$rankPSLBowlers <-  renderUI({
-    # Check if output is a dataframe. If so, print
+  output$PSLBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"PSL")
 
-    if(is.data.frame(a <- rankPlayers(input, output,"PSL","bowlers"))){
-      tableOutput("PSLRankBowlersPrint")
+  })
+
+  # Analyze and display PSL Match table
+  output$PSLBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"PSL")
+    a
+
+  })
+  # Output either a table or a plot
+  output$plotOrPrintPSLBowlingPerf <-  renderUI({
+    # Check if output is a dataframe. If so, print
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"PSL"))){
+      tableOutput("PSLBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4PSL == 1){
+        plotOutput("PSLBowlingPerfPlots")
+      } else{
+        plotlyOutput("PSLBowlingPerfPlotly")
+      }
 
     }
-  })
 
+  })
   ##########################################################################################
   # WBBL T20
   output$dateRange3WBB<- renderUI({
