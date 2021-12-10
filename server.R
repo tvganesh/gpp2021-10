@@ -984,12 +984,12 @@ shinyServer(function(input, output,session) {
     }
   })
 
-  ################################ Rank T20 Women ##############################
+  ################################  T20 Women Overall Analysis ##############################
   # Rank T20 Women performance
 
 
   output$dateRange5T20W<- renderUI({
-    m <- helper(T20WTeamNames, "./t20/t20WomenBattingBowlingDetails")
+    m <- helper(T20WTeamNames, "./t20/t20WomenPerformance","T20W")
     dateRangeInput("dateRange5T20W", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1007,21 +1007,38 @@ shinyServer(function(input, output,session) {
                       value =round(((helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[1]]) +
                                       (helper1(T20WTeamNames, input$dateRange5T20W, "./t20/t20WomenPerformance","T20W")[[2]]))/1.333))
   })
-  # Analyze and display T20W Match table
-  output$T20WRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"T20W","batsmen")
-    head(a,20)
+
+  output$T20WBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"T20W")
+
   })
 
+  output$T20WBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"T20W")
+
+  })
+
+  # Analyze and display T20W Match table
+  output$T20WBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"T20W")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankT20WBatsmen <-  renderUI({
+  output$plotOrPrintT20WBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"T20W","batsmen"))){
-      tableOutput("T20WRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"T20W"))){
+      tableOutput("T20WBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("T20WBattingPerfPlots")
+      } else{
+        plotlyOutput("T20WBattingPerfPlotly")
+      }
 
     }
+
   })
 
   ########################################

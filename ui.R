@@ -606,34 +606,38 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                               ),
                                                               # Rank T20 Women  tab
-                                                              # tabPanel("Rank Intl. T20 Batsmen (women)",
-                                                              #
-                                                              #          h4('Rank Intl. T20 Batsmen (women)'),
-                                                              #
-                                                              #          sidebarPanel(
-                                                              #              sliderInput("minMatchesT20W", "Matches played",
-                                                              #                          min = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
-                                                              #                          max = (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
-                                                              #                          value =round(((helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) +
-                                                              #                                            (helper(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]))/2),
-                                                              #              ),
-                                                              #              uiOutput("ModeT20W"),
-                                                              #              uiOutput("dateRange5T20W")
-                                                              #
-                                                              #          ),
-                                                              #          mainPanel(
-                                                              #              shinycssloaders::withSpinner(
-                                                              #                  uiOutput('rankT20WBatsmen'),
-                                                              #              ),
-                                                              #
-                                                              #              column(7, offset=4,
-                                                              #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                              #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                              #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                              #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                              #              )
-                                                              #          )
-                                                              # ),
+                                                              tabPanel("Rank Intl. T20 Batsmen (women)",
+
+                                                                       h4('Rank Intl. T20 Batsmen (women)'),
+
+                                                                       sidebarPanel(
+                                                                           selectInput('T20BattingPerfFuncT20W', 'Select function', T20OverallBattingPerfFunc),
+                                                                           sliderInput("minMatchesT20W", "Matches played",
+                                                                                       min = (helper(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[3]]),
+                                                                                       max = (helper(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[4]]),
+                                                                                       value =round(((helper(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[3]]) +
+                                                                                                         (helper(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[3]]))/2),
+                                                                           ),
+                                                                           uiOutput("ModeT20W"),
+                                                                           uiOutput("dateRange5T20W"),
+                                                                           radioButtons("plotOrTable3T20W", label = h4("Plot(static,interactive) or table"),
+                                                                                        choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                                        selected = 2,inline=T)
+
+                                                                       ),
+                                                                       mainPanel(
+                                                                           shinycssloaders::withSpinner(
+                                                                               uiOutput('plotOrPrintT20WBattingPerf'),
+                                                                           ),
+
+                                                                           column(7, offset=4,
+                                                                                  tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                                  tags$h5((tags$i("Oct 11, 2021"))),
+                                                                                  tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                                  tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                           )
+                                                                       )
+                                                              ),
                                                               # Rank T20 Bowlers(women) tab
                                                               # tabPanel("Rank Intl. T20 Bowlers (women)",
                                                               #
