@@ -110,7 +110,7 @@ printOrPlotT20BowlingPerf <- function(input,output,type="IPL"){
 
     } else if (type == "T20W"){
         if(input$T20BowlingPerfFuncT20W == "Overall bowlers rank")
-            a <-rankT20Bowlers("./t20/t20Performance",input$minMatches1T20W, input$dateRange6T20W,input$wicketsOverERT20W,"T20W")
+            a <-rankT20Bowlers("./t20/t20WomenPerformance",input$minMatches1T20W, input$dateRange6T20W,input$wicketsOverERT20W,"T20W")
         else if(input$T20BowlingPerfFuncT20W == "Overall Wickets vs ER plot")
             a <- overallWicketsERPlotT20("./t20/t20WomenPerformance",input$minMatches1T20W, input$dateRange6T20W,"T20W",input$plotOrTable4T20W)
         else if(input$T20BowlingPerfFuncT20W == "Overall Wickets vs ER Powerplay plot")

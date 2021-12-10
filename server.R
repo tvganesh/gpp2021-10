@@ -1042,9 +1042,9 @@ shinyServer(function(input, output,session) {
   })
 
   ########################################
-  # Rank T20 Women Bowlers
+  #T20 Women Bowlers overall analysis
   output$dateRange6T20W<- renderUI({
-    m <- helper2(T20WTeamNames, "./t20/t20WomenBattingBowlingDetails")
+    m <- helper2(T20WTeamNames, "./t20/t20WomenPerformance","T20W")
     dateRangeInput("dateRange6T20W", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1057,28 +1057,43 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6T20W[1],
                          end   = input$dateRange6T20W[2])
     updateSliderInput(session, "minMatches1T20W", # Set slider at 75$ between min & max
-                      min=(helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenBattingBowlingDetails")[[1]]),
-                      max = (helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenBattingBowlingDetails")[[1]]) +
-                                      (helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenPerformance","T20W")[[1]]),
+                      max = (helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenPerformance","T20W")[[2]]),
+                      value =round(((helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenPerformance","T20W")[[1]]) +
+                                      (helper3(T20WTeamNames, input$dateRange6T20W, "./t20/t20WomenPerformance","T20W")[[2]]))/1.333))
+  })
+
+  output$T20WBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"T20W")
+
+  })
+
+  output$T20WBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"T20W")
+
   })
 
   # Analyze and display T20W Match table
-  output$T20WRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"T20W","bowlers")
-    head(a,20)
+  output$T20WBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"T20W")
+    a
+
   })
-
   # Output either a table or a plot
-  output$rankT20WBowlers <-  renderUI({
+  output$plotOrPrintIPLBowlingPerfT20W <-  renderUI({
     # Check if output is a dataframe. If so, print
-
-    if(is.data.frame(a <- rankPlayers(input, output,"T20W","bowlers"))){
-      tableOutput("T20WRankBowlersPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"T20W"))){
+      tableOutput("T20WBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4T20W == 1){
+        plotOutput("T20WBowlingPerfPlots")
+      } else{
+        plotlyOutput("T20WBowlingPerfPlotly")
+      }
 
     }
+
   })
 
   ###############################################Big Bash League ###########################################

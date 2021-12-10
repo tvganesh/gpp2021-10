@@ -639,31 +639,35 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                        )
                                                               ),
                                                               # Rank T20 Bowlers(women) tab
-                                                              # tabPanel("Rank Intl. T20 Bowlers (women)",
-                                                              #
-                                                              #          h4('Rank Intl. T20 Bowlers (women)'),
-                                                              #          sidebarPanel(
-                                                              #
-                                                              #              sliderInput("minMatches1T20W", "Matches played",
-                                                              #                          min = (helper2(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]),
-                                                              #                          max = (helper2(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]),
-                                                              #                          value =round(((helper2(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[3]]) + (helper2(T20WTeamNames,"./t20/t20WomenBattingBowlingDetails")[[4]]))/2)
-                                                              #              ),
-                                                              #              uiOutput("Mode1T20W"),
-                                                              #              uiOutput("dateRange6T20W")
-                                                              #          ),
-                                                              #          mainPanel(
-                                                              #              shinycssloaders::withSpinner(
-                                                              #                  uiOutput('rankT20WBowlers'),
-                                                              #              ),
-                                                              #              column(7, offset=4,
-                                                              #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                              #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                              #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                              #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                              #              )
-                                                              #          )
-                                                              # )
+                                                              tabPanel("Rank Intl. T20 Bowlers (women)",
+
+                                                                       h4('Rank Intl. T20 Bowlers (women)'),
+                                                                       sidebarPanel(
+                                                                           selectInput('T20BowlingPerfFuncT20W', 'Select function', T20OverallBowlingPerfFunc),
+                                                                           sliderInput("minMatches1T20W", "Matches played",
+                                                                                       min = (helper2(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[3]]),
+                                                                                       max = (helper2(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[4]]),
+                                                                                       value =round(((helper2(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[3]]) +
+                                                                                                         (helper2(T20WTeamNames,"./t20/t20WomenPerformance","T20W")[[4]]))/2)
+                                                                           ),
+                                                                           uiOutput("Mode1T20W"),
+                                                                           uiOutput("dateRange6T20W"),
+                                                                           radioButtons("plotOrTable4T20W", label = h4("Plot(static,interactive) or table"),
+                                                                                        choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                                        selected = 2,inline=T)
+                                                                       ),
+                                                                       mainPanel(
+                                                                           shinycssloaders::withSpinner(
+                                                                               uiOutput('plotOrPrintIPLBowlingPerfT20W'),
+                                                                           ),
+                                                                           column(7, offset=4,
+                                                                                  tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                                  tags$h5((tags$i("Oct 11, 2021"))),
+                                                                                  tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                                  tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                           )
+                                                                       )
+                                                              )
 
                       )),
                       #############################Big Bash League T20 #########################################################
