@@ -447,7 +447,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                      ),
                                                                      mainPanel(
                                                                          shinycssloaders::withSpinner(
-                                                                             uiOutput('plotOrPrintIPLBowlingPerfT20M'),
+                                                                             uiOutput('plotOrPrintT20MBowlingPerf'),
                                                                          ),
                                                                          column(7, offset=4,
                                                                                 tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
@@ -658,7 +658,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                        ),
                                                                        mainPanel(
                                                                            shinycssloaders::withSpinner(
-                                                                               uiOutput('plotOrPrintIPLBowlingPerfT20W'),
+                                                                               uiOutput('plotOrPrintT20WBowlingPerf'),
                                                                            ),
                                                                            column(7, offset=4,
                                                                                   tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
@@ -849,31 +849,35 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank BBL Bowlers tab
-                                                    # tabPanel("Rank BBL Bowlers",
-                                                    #
-                                                    #          h4('Rank BBL Bowlers '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatches1BBL", "Matches played",
-                                                    #                          min = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[3]]) + (helper2(BBLTeamNames,"./bbl/bblBattingBowlingDetails")[[4]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("Mode1BBL"),
-                                                    #              uiOutput("dateRange6BBL")
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankBBLBowlers'),
-                                                    #              ),
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # )
+                                                    tabPanel("BBL Bowlers Overall Performance",
+
+                                                             h4('BBL BowlersOverall Performance'),
+                                                             sidebarPanel(
+                                                                 selectInput('T20BowlingPerfFuncBBL', 'Select function', T20OverallBowlingPerfFunc),
+                                                                 sliderInput("minMatches1BBL", "Matches played",
+                                                                             min = (helper2(BBLTeamNames,"./bbl/bblPerformance","BBL")[[3]]),
+                                                                             max = (helper2(BBLTeamNames,"./bbl/bblPerformance","BBL")[[4]]),
+                                                                             value =round(((helper2(BBLTeamNames,"./bbl/bblPerformance","BBL")[[3]]) +
+                                                                                               (helper2(BBLTeamNames,"./bbl/bblPerformance","BBL")[[4]]))/2)
+                                                                 ),
+                                                                 uiOutput("Mode1BBL"),
+                                                                 uiOutput("dateRange6BBL"),
+                                                                 radioButtons("plotOrTable4BBL", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintBBLBowlingPerf'),
+                                                                 ),
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    )
 
                       )),
                       ############################# Natwest T20 ################################

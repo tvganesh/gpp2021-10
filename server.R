@@ -733,7 +733,7 @@ shinyServer(function(input, output,session) {
 
   })
   # Output either a table or a plot
-  output$plotOrPrintIPLBowlingPerfT20M <-  renderUI({
+  output$plotOrPrintT20MBowlingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
     if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"T20M"))){
       tableOutput("T20MBowlingPerfPrint")
@@ -1080,7 +1080,7 @@ shinyServer(function(input, output,session) {
 
   })
   # Output either a table or a plot
-  output$plotOrPrintIPLBowlingPerfT20W <-  renderUI({
+  output$plotOrPrintT20WBowlingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
     if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"T20W"))){
       tableOutput("T20WBowlingPerfPrint")
@@ -1389,7 +1389,7 @@ shinyServer(function(input, output,session) {
   ########################################
   # Rank BBL Bowlers
   output$dateRange6BBL<- renderUI({
-    m <- helper2(BBLTeamNames, "./bbl/bblBattingBowlingDetails")
+    m <- helper2(BBLTeamNames, "./bbl/bblPerformance","BBL")
     dateRangeInput("dateRange6BBL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -1402,29 +1402,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6BBL[1],
                          end   = input$dateRange6BBL[2])
     updateSliderInput(session, "minMatches1BBL", # Set slider at 75$ between min & max
-                      min=(helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblBattingBowlingDetails")[[1]]),
-                      max = (helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblBattingBowlingDetails")[[1]]) +
-                                      (helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblPerformance","BBL")[[1]]),
+                      max = (helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblPerformance","BBL")[[2]]),
+                      value =round(((helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblPerformance","BBL")[[1]]) +
+                                      (helper3(BBLTeamNames, input$dateRange6BBL, "./bbl/bblPerformance","BBL")[[2]]))/1.333))
+
+  })
+
+  output$BBLBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"BBL")
+
+  })
+
+  output$BBLBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"BBL")
 
   })
 
   # Analyze and display BBL Match table
-  output$BBLRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"BBL","bowlers")
-    head(a,20)
+  output$BBLBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"BBL")
+    a
+
   })
-
   # Output either a table or a plot
-  output$rankBBLBowlers <-  renderUI({
+  output$plotOrPrintBBLBowlingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-
-    if(is.data.frame(a <- rankPlayers(input, output,"BBL","bowlers"))){
-      tableOutput("BBLRankBowlersPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"BBL"))){
+      tableOutput("BBLBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4BBL == 1){
+        plotOutput("BBLBowlingPerfPlots")
+      } else{
+        plotlyOutput("BBLBowlingPerfPlotly")
+      }
 
     }
+
   })
   #########################################################Natwest T20 #####################################
   ##########################################################################################################
