@@ -330,9 +330,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("IPLBattingPerfPlots")
+        plotOutput("IPLBattingPerfPlots",width = "100%", height = "550px",)
       } else{
-        plotlyOutput("IPLBattingPerfPlotly")
+        plotlyOutput("IPLBattingPerfPlotly",width = "100%", height = "550px",)
       }
 
     }
