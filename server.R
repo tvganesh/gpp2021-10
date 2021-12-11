@@ -3580,7 +3580,7 @@ shinyServer(function(input, output,session) {
   ########################################
   # Rank SSM Bowlers
   output$dateRange6SSM<- renderUI({
-    m <- helper2(SSMTeamNames, "./ssm/ssmBattingBowlingDetails")
+    m <- helper2(SSMTeamNames, "./ssm/ssmPerformance","SSM")
     dateRangeInput("dateRange6SSM", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -3593,28 +3593,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6SSM[1],
                          end   = input$dateRange6SSM[2])
     updateSliderInput(session, "minMatches1SSM", # Set slider at 75$ between min & max
-                      min=(helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmBattingBowlingDetails")[[1]]),
-                      max = (helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmBattingBowlingDetails")[[1]]) +
-                                      (helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmPerformance","SSM")[[1]]),
+                      max = (helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmPerformance","SSM")[[2]]),
+                      value =round(((helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmPerformance","SSM")[[1]]) +
+                                      (helper3(SSMTeamNames, input$dateRange6SSM, "./ssm/ssmPerformance","SSM")[[2]]))/1.333))
   })
 
   # Analyze and display SSM Match table
-  output$SSMRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"SSM","bowlers")
-    head(a,20)
+  output$SSMBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"SSM")
+
   })
 
-  # Output either a table or a plot
-  output$rankSSMBowlers <-  renderUI({
-    # Check if output is a dataframe. If so, print
+  output$SSMBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"SSM")
 
-    if(is.data.frame(a <- rankPlayers(input, output,"SSM","bowlers"))){
-      tableOutput("SSMRankBowlersPrint")
+  })
+
+  # Analyze and display SSM Match table
+  output$SSMBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"SSM")
+    a
+
+  })
+  # Output either a table or a plot
+  output$plotOrPrintSSMBowlingPerf <-  renderUI({
+    # Check if output is a dataframe. If so, print
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"SSM"))){
+      tableOutput("SSMBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4SSM == 1){
+        plotOutput("SSMBowlingPerfPlots")
+      } else{
+        plotlyOutput("SSMBowlingPerfPlotly")
+      }
 
     }
+
   })
 
 
