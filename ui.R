@@ -1867,34 +1867,38 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank SSM Players tab
-                                                    # tabPanel("Rank  SSM Batsmen",
-                                                    #
-                                                    #          h4('Rank  SSM Batsmen '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatchesSSM", "Matches played",
-                                                    #                          min = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]) +
-                                                    #                                            (helper(SSMTeamNames,"./ssm/ssmBattingBowlingDetails")[[3]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("ModeSSM"),
-                                                    #              uiOutput("dateRange5SSM")
-                                                    #
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankSSMBatsmen'),
-                                                    #              ),
-                                                    #
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # ),
+                                                    tabPanel("Rank  SSM Batsmen",
+
+                                                             sidebarPanel(
+                                                                 h4('Rank  SSM Batsmen '),
+                                                                 selectInput('T20BattingPerfFuncSSM', 'Select function', T20OverallBattingPerfFunc),
+
+                                                                 sliderInput("minMatchesSSM", "Matches played",
+                                                                             min = (helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[3]]),
+                                                                             max = (helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[4]]),
+                                                                             value =round(((helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[3]]) +
+                                                                                               (helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[3]]))/2)
+                                                                 ),
+                                                                 uiOutput("ModeSSM"),
+                                                                 uiOutput("dateRange5SSM"),
+                                                                 radioButtons("plotOrTable3SSM", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintSSMBattingPerf'),
+                                                                 ),
+
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    ),
                                                     # Rank SSM Bowlers tab
                                                     # tabPanel("Rank SSM Bowlers",
                                                     #

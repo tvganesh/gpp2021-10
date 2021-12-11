@@ -3524,7 +3524,7 @@ shinyServer(function(input, output,session) {
 
   # Display ranks
   output$dateRange5SSM<- renderUI({
-    m <- helper(SSMTeamNames, "./ssm/ssmBattingBowlingDetails")
+    m <- helper(SSMTeamNames, "./ssm/ssmPerformance","SSM")
     dateRangeInput("dateRange5SSM", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -3544,21 +3544,37 @@ shinyServer(function(input, output,session) {
   })
 
 
-  # Analyze and display SSM Match table
-  output$SSMRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"SSM","batsmen")
-    head(a,20)
+  output$SSMBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"SSM")
+
   })
 
+  output$SSMBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"SSM")
+
+  })
+
+  # Analyze and display SSM Match table
+  output$SSMBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"SSM")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankSSMBatsmen <-  renderUI({
+  output$plotOrPrintSSMBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"SSM","batsmen"))){
-      tableOutput("SSMRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"SSM"))){
+      tableOutput("SSMBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("SSMBattingPerfPlots")
+      } else{
+        plotlyOutput("SSMBattingPerfPlotly")
+      }
 
     }
+
   })
 
   ########################################
