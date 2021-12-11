@@ -3230,7 +3230,7 @@ shinyServer(function(input, output,session) {
   ########################################
   # Rank CPL Bowlers
   output$dateRange6CPL<- renderUI({
-    m <- helper2(CPLTeamNames, "./cpl/cplBattingBowlingDetails")
+    m <- helper2(CPLTeamNames, "./cpl/cplPerformance","CPL")
     dateRangeInput("dateRange6CPL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -3243,28 +3243,44 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange6CPL[1],
                          end   = input$dateRange6CPL[2])
     updateSliderInput(session, "minMatches1CPL", # Set slider at 75$ between min & max
-                      min=(helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplBattingBowlingDetails")[[1]]),
-                      max = (helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplBattingBowlingDetails")[[2]]),
-                      value =round(((helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplBattingBowlingDetails")[[1]]) +
-                                      (helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplBattingBowlingDetails")[[2]]))/1.333))
+                      min=(helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplPerformance","CPL")[[1]]),
+                      max = (helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplPerformance","CPL")[[2]]),
+                      value =round(((helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplPerformance","CPL")[[1]]) +
+                                      (helper3(CPLTeamNames, input$dateRange6CPL, "./cpl/cplPerformance","CPL")[[2]]))/1.333))
   })
 
   # Analyze and display CPL Match table
-  output$CPLRankBowlersPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"CPL","bowlers")
-    head(a,20)
+  output$CPLBowlingPerfPlots <- renderPlot({
+    printOrPlotT20BowlingPerf(input, output,"CPL")
+
   })
 
-  # Output either a table or a plot
-  output$rankCPLBowlers <-  renderUI({
-    # Check if output is a dataframe. If so, print
+  output$CPLBowlingPerfPlotly <- renderPlotly({
+    printOrPlotT20BowlingPerf(input, output,"CPL")
 
-    if(is.data.frame(a <- rankPlayers(input, output,"CPL","bowlers"))){
-      tableOutput("CPLRankBowlersPrint")
+  })
+
+  # Analyze and display CPL Match table
+  output$CPLBowlingPerfPrint <- renderTable({
+    a <- printOrPlotT20BowlingPerf(input, output,"CPL")
+    a
+
+  })
+  # Output either a table or a plot
+  output$plotOrPrintCPLBowlingPerf <-  renderUI({
+    # Check if output is a dataframe. If so, print
+    if(is.data.frame(scorecard <- printOrPlotT20BowlingPerf(input, output,"CPL"))){
+      tableOutput("CPLBowlingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable4CPL == 1){
+        plotOutput("CPLBowlingPerfPlots")
+      } else{
+        plotlyOutput("CPLBowlingPerfPlotly")
+      }
 
     }
+
   })
 
 
