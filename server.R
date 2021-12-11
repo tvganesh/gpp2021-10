@@ -3175,7 +3175,7 @@ shinyServer(function(input, output,session) {
 
   # Display ranks
   output$dateRange5CPL<- renderUI({
-    m <- helper(CPLTeamNames, "./cpl/cplBattingBowlingDetails")
+    m <- helper(CPLTeamNames, "./cpl/cplPerformance","CPL")
     dateRangeInput("dateRange5CPL", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -3195,23 +3195,38 @@ shinyServer(function(input, output,session) {
   })
 
 
-  # Analyze and display CPL Match table
-  output$CPLRankBatsmenPrint <- renderTable({
-    Sys.sleep(1.5)
-    plot(runif(10))
-    a <- rankPlayers(input, output,"CPL","batsmen")
-    head(a,20)
+  output$CPLBattingPerfPlots <- renderPlot({
+    printOrPlotT20BattingPerf(input, output,"CPL")
+
   })
 
+  output$CPLBattingPerfPlotly <- renderPlotly({
+    printOrPlotT20BattingPerf(input, output,"CPL")
+
+  })
+
+  # Analyze and display CPL Match table
+  output$CPLBattingPerfPrint <- renderTable({
+    a <- printOrPlotT20BattingPerf(input, output,"CPL")
+    a
+
+  })
   # Output either a table or a plot
-  output$rankCPLBatsmen <-  renderUI({
+  output$plotOrPrintCPLBattingPerf <-  renderUI({
     # Check if output is a dataframe. If so, print
-    if(is.data.frame(a <- rankPlayers(input, output,"CPL","batsmen"))){
-      tableOutput("CPLRankBatsmenPrint")
+    if(is.data.frame(scorecard <- printOrPlotT20BattingPerf(input, output,"CPL"))){
+      tableOutput("CPLBattingPerfPrint")
+    }
+    else{ #Else plot
+      if(input$plotOrTable3 == 1){
+        plotOutput("CPLBattingPerfPlots")
+      } else{
+        plotlyOutput("CPLBattingPerfPlotly")
+      }
 
     }
-  })
 
+  })
   ########################################
   # Rank CPL Bowlers
   output$dateRange6CPL<- renderUI({

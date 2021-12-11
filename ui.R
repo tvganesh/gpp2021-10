@@ -1656,34 +1656,37 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank CPL Players tab
-                                                    # tabPanel("Rank  CPL Batsmen",
-                                                    #
-                                                    #          h4('Rank  CPL Batsmen '),
-                                                    #          sidebarPanel(
-                                                    #
-                                                    #              sliderInput("minMatchesCPL", "Matches played",
-                                                    #                          min = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]),
-                                                    #                          max = (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[4]]),
-                                                    #                          value =round(((helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]) +
-                                                    #                                            (helper(CPLTeamNames,"./cpl/cplBattingBowlingDetails")[[3]]))/2)
-                                                    #              ),
-                                                    #              uiOutput("ModeCPL"),
-                                                    #              uiOutput("dateRange5CPL")
-                                                    #
-                                                    #          ),
-                                                    #          mainPanel(
-                                                    #              shinycssloaders::withSpinner(
-                                                    #                  uiOutput('rankCPLBatsmen'),
-                                                    #              ),
-                                                    #
-                                                    #              column(7, offset=4,
-                                                    #                     tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
-                                                    #                     tags$h5((tags$i("Oct 11, 2021"))),
-                                                    #                     tags$h6("Data source Cricsheet: http://cricsheet.org/"),
-                                                    #                     tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
-                                                    #              )
-                                                    #          )
-                                                    # ),
+                                                    tabPanel("Rank  CPL Batsmen",
+
+                                                             h4('Rank  CPL Batsmen '),
+                                                             sidebarPanel(
+                                                                 selectInput('T20BattingPerfFuncCPL', 'Select function', T20OverallBattingPerfFunc),
+                                                                 sliderInput("minMatchesCPL", "Matches played",
+                                                                             min = (helper(CPLTeamNames,"./cpl/cplPerformance","CPL")[[3]]),
+                                                                             max = (helper(CPLTeamNames,"./cpl/cplPerformance","CPL")[[4]]),
+                                                                             value =round(((helper(CPLTeamNames,"./cpl/cplPerformance","CPL")[[3]]) +
+                                                                                               (helper(CPLTeamNames,"./cpl/cplPerformance","CPL")[[3]]))/2)
+                                                                 ),
+                                                                 uiOutput("ModeCPL"),
+                                                                 uiOutput("dateRange5CPL"),
+                                                                 radioButtons("plotOrTable3CPL", label = h4("Plot(static,interactive) or table"),
+                                                                              choices = c("Plot(interactive)" = 2, "Plot(static)" = 1, "Table" = 3),
+                                                                              selected = 2,inline=T)
+
+                                                             ),
+                                                             mainPanel(
+                                                                 shinycssloaders::withSpinner(
+                                                                     uiOutput('plotOrPrintCPLBattingPerf'),
+                                                                 ),
+
+                                                                 column(7, offset=4,
+                                                                        tags$h5((tags$i("Designed and developed by Tinniam V Ganesh"))),
+                                                                        tags$h5((tags$i("Oct 11, 2021"))),
+                                                                        tags$h6("Data source Cricsheet: http://cricsheet.org/"),
+                                                                        tags$a(href="https://cran.r-project.org/web/packages/yorkr/index.html", " Based on R package yorkr")
+                                                                 )
+                                                             )
+                                                    ),
                                                     # Rank CPL Bowlers tab
                                                     # tabPanel("Rank CPL Bowlers",
                                                     #

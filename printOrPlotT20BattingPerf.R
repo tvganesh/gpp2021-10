@@ -166,6 +166,18 @@ printOrPlotT20BattingPerf <- function(input,output,type="IPL"){
       else if(input$T20BattingPerfFuncWBB == "Overall Runs vs SR Death overs plot")
         a <- overallRunsSRDeathOversPlotT20("./wbb/wbbPerformance", input$dateRange5WBB,"WBB",input$plotOrTable3WBB)
 
+    } else if(type == "CPL"){
+      if(input$T20BattingPerfFuncCPL == "Overall batsmen rank")
+        a <-rankT20Batsmen("./cpl/cplPerformance",input$minMatchesCPL, input$dateRange5CPL,input$runsOverSRCPL,"CPL")
+      else if(input$T20BattingPerfFuncCPL == "Overall Runs vs SR plot")
+        a <- overallRunsSRPlotT20("./cpl/cplPerformance",input$minMatchesCPL, input$dateRange5CPL,"CPL")
+      else if(input$T20BattingPerfFuncCPL == "Overall Runs vs SR Powerplay plot")
+        a <- overallRunsSRPPowerplayPlotT20("./cpl/cplPerformance",input$dateRange5CPL,"CPL",input$plotOrTable3CPL)
+      else if(input$T20BattingPerfFuncCPL == "Overall Runs vs SR Middle overs plot")
+        a <- overallRunsSRMiddleOversPlotT20("./cpl/cplPerformance", input$dateRange5CPL,"CPL",input$plotOrTable3CPL)
+      else if(input$T20BattingPerfFuncCPL == "Overall Runs vs SR Death overs plot")
+        a <- overallRunsSRDeathOversPlotT20("./cpl/cplPerformance", input$dateRange5CPL,"CPL",input$plotOrTable3CPL)
+
     }
 
    head(a)
