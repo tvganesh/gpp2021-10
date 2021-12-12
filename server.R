@@ -442,7 +442,7 @@ shinyServer(function(input, output,session) {
       if(input$batsmanFuncT20M =="Dismissals of batsman" || input$batsmanFuncT20M == "Predict Runs of batsman")
         plotOutput("batsmanPlotsT20M",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyT20M")
+        plotlyOutput("batsmanPlotlyT20M",width = "100%", height = "550px")
     }
 
   })
@@ -479,7 +479,7 @@ shinyServer(function(input, output,session) {
       if(input$bowlerFuncT20M == "Bowler's wickets prediction")
         plotOutput("bowlerPlotsT20M",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyT20M")
+        plotlyOutput("bowlerPlotlyT20M",width = "100%", height = "550px")
     }
 
   })
@@ -513,7 +513,7 @@ shinyServer(function(input, output,session) {
       if(input$plotOrTableT20M == 1){
         plotOutput("T20MMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20MMatchPlotly")
+        plotlyOutput("T20MMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -563,7 +563,7 @@ shinyServer(function(input, output,session) {
   output$plotOrPrintT20MMatch2teams <-  renderUI({
 
     if(input$matches2TeamFunc == "Win Loss Head-to-head All Matches" && input$plotOrTable1T20M == 3){
-      plotlyOutput("T20MMatch2TeamsPlotly")
+      plotlyOutput("T20MMatch2TeamsPlotly",width = "100%", height = "550px")
     }
     # Check if output is a dataframe. If so, print
     else if(is.data.frame(scorecard <- printOrPlotMatch2Teams(input, output,"T20M"))){
@@ -573,7 +573,7 @@ shinyServer(function(input, output,session) {
       if(input$plotOrTable1T20M == 1){
         plotOutput("T20MMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1T20M == 2){
-        plotlyOutput("T20MMatch2TeamsPlotly")
+        plotlyOutput("T20MMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -621,7 +621,7 @@ shinyServer(function(input, output,session) {
   output$printOrPlotT20MTeamPerfoverall <-  renderUI({
 
     if(input$overallperfFunc == "Win Loss Team vs All Opposition" && input$plotOrTable2 == 3){
-      plotlyOutput("T20MTeamPerfOverallPlotly")
+      plotlyOutput("T20MTeamPerfOverallPlotly",width = "100%", height = "550px")
     }
     # Check if output is a dataframe. If so, print
     else  if(is.data.frame(scorecard <- printOrPlotTeamPerfOverall(input, output,"T20M"))){
@@ -631,7 +631,7 @@ shinyServer(function(input, output,session) {
       if(input$plotOrTable2T20M == 1){
         plotOutput("T20MTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2T20M == 2){
-        plotlyOutput("T20MTeamPerfOverallPlotly")
+        plotlyOutput("T20MTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -687,7 +687,7 @@ shinyServer(function(input, output,session) {
       if(input$plotOrTable3 == 1){
         plotOutput("T20MBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20MBattingPerfPlotly")
+        plotlyOutput("T20MBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -742,7 +742,7 @@ shinyServer(function(input, output,session) {
       if(input$plotOrTable4T20M == 1){
         plotOutput("T20MBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20MBowlingPerfPlotly")
+        plotlyOutput("T20MBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -782,14 +782,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotT20W <- renderUI({
     if(input$staticIntvT20W == 1){
-      plotOutput("batsmanPlotsT20W")
+      plotOutput("batsmanPlotsT20W",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncT20W =="Dismissals of batsman" || input$batsmanFuncT20W == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsT20W")
+        plotOutput("batsmanPlotsT20W",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyT20W")
+        plotlyOutput("batsmanPlotlyT20W",width = "100%", height = "550px")
     }
 
   })
@@ -822,12 +822,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotT20W <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsT20W")
+      plotOutput("bowlerPlotsT20W",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncT20W == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsT20W")
+        plotOutput("bowlerPlotsT20W",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyT20W")
+        plotlyOutput("bowlerPlotlyT20W",width = "100%", height = "550px")
     }
 
   })
@@ -859,9 +859,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableT20W == 1){
-        plotOutput("T20WMatchPlots")
+        plotOutput("T20WMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20WMatchPlotly")
+        plotlyOutput("T20WMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -919,9 +919,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1T20W == 1){
-        plotOutput("T20WMatch2TeamsPlots")
+        plotOutput("T20WMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTableT20W == 2){
-        plotlyOutput("T20WMatch2TeamsPlotly")
+        plotlyOutput("T20WMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -977,9 +977,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2T20W == 1){
-        plotOutput("T20WTeamPerfOverallPlots")
+        plotOutput("T20WTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2T20W == 2){
-        plotlyOutput("T20WTeamPerfOverallPlotly")
+        plotlyOutput("T20WTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -1032,9 +1032,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("T20WBattingPerfPlots")
+        plotOutput("T20WBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20WBattingPerfPlotly")
+        plotlyOutput("T20WBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1087,9 +1087,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4T20W == 1){
-        plotOutput("T20WBowlingPerfPlots")
+        plotOutput("T20WBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("T20WBowlingPerfPlotly")
+        plotlyOutput("T20WBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1129,14 +1129,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotBBL <- renderUI({
     if(input$staticIntvBBL == 1){
-      plotOutput("batsmanPlotsBBL")
+      plotOutput("batsmanPlotsBBL",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncBBL =="Dismissals of batsman" || input$batsmanFuncBBL == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsBBL")
+        plotOutput("batsmanPlotsBBL",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyBBL")
+        plotlyOutput("batsmanPlotlyBBL",width = "100%", height = "550px")
     }
 
   })
@@ -1168,12 +1168,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotBBL <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsBBL")
+      plotOutput("bowlerPlotsBBL",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncBBL == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsBBL")
+        plotOutput("bowlerPlotsBBL",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyBBL")
+        plotlyOutput("bowlerPlotlyBBL",width = "100%", height = "550px")
     }
 
   })
@@ -1205,9 +1205,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableBBL == 1){
-        plotOutput("BBLMatchPlots")
+        plotOutput("BBLMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("BBLMatchPlotly")
+        plotlyOutput("BBLMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1265,9 +1265,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1BBL == 1){
-        plotOutput("BBLMatch2TeamsPlots")
+        plotOutput("BBLMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1BBL == 2){
-        plotlyOutput("BBLMatch2TeamsPlotly")
+        plotlyOutput("BBLMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -1323,9 +1323,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2BBL == 1){
-        plotOutput("BBLTeamPerfOverallPlots")
+        plotOutput("BBLTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2BBL == 2){
-        plotlyOutput("BBLTeamPerfOverallPlotly")
+        plotlyOutput("BBLTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -1377,9 +1377,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("BBLBattingPerfPlots")
+        plotOutput("BBLBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("BBLBattingPerfPlotly")
+        plotlyOutput("BBLBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1433,9 +1433,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4BBL == 1){
-        plotOutput("BBLBowlingPerfPlots")
+        plotOutput("BBLBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("BBLBowlingPerfPlotly")
+        plotlyOutput("BBLBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1473,14 +1473,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotNTB <- renderUI({
     if(input$staticIntvNTB == 1){
-      plotOutput("batsmanPlotsNTB")
+      plotOutput("batsmanPlotsNTB",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncNTB =="Dismissals of batsman" || input$batsmanFuncNTB == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsNTB")
+        plotOutput("batsmanPlotsNTB",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyNTB")
+        plotlyOutput("batsmanPlotlyNTB",width = "100%", height = "550px")
     }
 
   })
@@ -1511,12 +1511,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotNTB <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsNTB")
+      plotOutput("bowlerPlotsNTB",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncNTB == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsNTB")
+        plotOutput("bowlerPlotsNTB",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyNTB")
+        plotlyOutput("bowlerPlotlyNTB",width = "100%", height = "550px")
     }
 
   })
@@ -1546,9 +1546,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableNTB == 1){
-        plotOutput("NTBMatchPlots")
+        plotOutput("NTBMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("NTBMatchPlotly")
+        plotlyOutput("NTBMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1606,9 +1606,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1NTB == 1){
-        plotOutput("NTBMatch2TeamsPlots")
+        plotOutput("NTBMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1NTB == 2){
-        plotlyOutput("NTBMatch2TeamsPlotly")
+        plotlyOutput("NTBMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -1662,9 +1662,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2NTB == 1){
-        plotOutput("NTBTeamPerfOverallPlots")
+        plotOutput("NTBTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2NTB == 2){
-        plotlyOutput("NTBTeamPerfOverallPlotly")
+        plotlyOutput("NTBTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -1718,9 +1718,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("NTBBattingPerfPlots")
+        plotOutput("NTBBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("NTBBattingPerfPlotly")
+        plotlyOutput("NTBBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1774,9 +1774,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4NTB == 1){
-        plotOutput("NTBBowlingPerfPlots")
+        plotOutput("NTBBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("NTBBowlingPerfPlotly")
+        plotlyOutput("NTBBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1815,14 +1815,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotPSL <- renderUI({
     if(input$staticIntvPSL == 1){
-      plotOutput("batsmanPlotsPSL")
+      plotOutput("batsmanPlotsPSL",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncPSL =="Dismissals of batsman" || input$batsmanFuncPSL == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsPSL")
+        plotOutput("batsmanPlotsPSL",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyPSL")
+        plotlyOutput("batsmanPlotlyPSL",width = "100%", height = "550px")
     }
 
   })
@@ -1854,12 +1854,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotPSL <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsPSL")
+      plotOutput("bowlerPlotsPSL",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncPSL == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsPSL")
+        plotOutput("bowlerPlotsPSL",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyPSL")
+        plotlyOutput("bowlerPlotlyPSL",width = "100%", height = "550px")
     }
 
   })
@@ -1889,9 +1889,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTablePSL == 1){
-        plotOutput("PSLMatchPlots")
+        plotOutput("PSLMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("PSLMatchPlotly")
+        plotlyOutput("PSLMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -1949,9 +1949,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1PSL == 1){
-        plotOutput("PSLMatch2TeamsPlots")
+        plotOutput("PSLMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1PSL == 2){
-        plotlyOutput("PSLMatch2TeamsPlotly")
+        plotlyOutput("PSLMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -2006,9 +2006,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2PSL == 1){
-        plotOutput("PSLTeamPerfOverallPlots")
+        plotOutput("PSLTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2PSL == 2){
-        plotlyOutput("PSLTeamPerfOverallPlotly")
+        plotlyOutput("PSLTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -2063,9 +2063,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("PSLBattingPerfPlots")
+        plotOutput("PSLBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("PSLBattingPerfPlotly")
+        plotlyOutput("PSLBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2119,9 +2119,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4PSL == 1){
-        plotOutput("PSLBowlingPerfPlots")
+        plotOutput("PSLBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("PSLBowlingPerfPlotly")
+        plotlyOutput("PSLBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2159,14 +2159,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotWBB <- renderUI({
     if(input$staticIntvWBB == 1){
-      plotOutput("batsmanPlotsWBB")
+      plotOutput("batsmanPlotsWBB",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncWBB =="Dismissals of batsman" || input$batsmanFuncWBB == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsWBB")
+        plotOutput("batsmanPlotsWBB",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyWBB")
+        plotlyOutput("batsmanPlotlyWBB",width = "100%", height = "550px")
     }
 
   })
@@ -2199,12 +2199,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotWBB <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsWBB")
+      plotOutput("bowlerPlotsWBB",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncWBB == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsWBB")
+        plotOutput("bowlerPlotsWBB",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyWBB")
+        plotlyOutput("bowlerPlotlyWBB",width = "100%", height = "550px")
     }
 
   })
@@ -2236,9 +2236,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableWBB == 1){
-        plotOutput("WBBMatchPlots")
+        plotOutput("WBBMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("WBBMatchPlotly")
+        plotlyOutput("WBBMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2296,9 +2296,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1WBB == 1){
-        plotOutput("WBBMatch2TeamsPlots")
+        plotOutput("WBBMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1WBB == 2){
-        plotlyOutput("WBBMatch2TeamsPlotly")
+        plotlyOutput("WBBMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -2353,9 +2353,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2WBB == 1){
-        plotOutput("WBBTeamPerfOverallPlots")
+        plotOutput("WBBTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2WBB == 2){
-        plotlyOutput("WBBTeamPerfOverallPlotly")
+        plotlyOutput("WBBTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -2408,9 +2408,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("WBBBattingPerfPlots")
+        plotOutput("WBBBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("WBBBattingPerfPlotly")
+        plotlyOutput("WBBBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2462,9 +2462,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4WBB == 1){
-        plotOutput("WBBBowlingPerfPlots")
+        plotOutput("WBBBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("WBBBowlingPerfPlotly")
+        plotlyOutput("WBBBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2504,14 +2504,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotODIM <- renderUI({
     if(input$staticIntvODIM == 1){
-      plotOutput("batsmanPlotsODIM")
+      plotOutput("batsmanPlotsODIM",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncODIM =="Dismissals of batsman" || input$batsmanFuncODIM == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsODIM")
+        plotOutput("batsmanPlotsODIM",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyODIM")
+        plotlyOutput("batsmanPlotlyODIM",width = "100%", height = "550px")
     }
 
   })
@@ -2545,12 +2545,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotODIM <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsODIM")
+      plotOutput("bowlerPlotsODIM",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncODIM == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsODIM")
+        plotOutput("bowlerPlotsODIM",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyODIM")
+        plotlyOutput("bowlerPlotlyODIM",width = "100%", height = "550px")
     }
 
   })
@@ -2580,9 +2580,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableODIM == 1){
-        plotOutput("ODIMMatchPlots")
+        plotOutput("ODIMMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("ODIMMatchPlotly")
+        plotlyOutput("ODIMMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2639,9 +2639,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1ODIM == 1){
-        plotOutput("ODIMMatch2TeamsPlots")
+        plotOutput("ODIMMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1ODIM == 2){
-        plotlyOutput("ODIMMatch2TeamsPlotly")
+        plotlyOutput("ODIMMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -2695,9 +2695,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2ODIM == 1){
-        plotOutput("ODIMTeamPerfOverallPlots")
+        plotOutput("ODIMTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2ODIM == 2){
-        plotlyOutput("ODIMTeamPerfOverallPlotly")
+        plotlyOutput("ODIMTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -2733,14 +2733,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotODIW <- renderUI({
     if(input$staticIntvODIW == 1){
-      plotOutput("batsmanPlotsODIW")
+      plotOutput("batsmanPlotsODIW",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncODIW =="Dismissals of batsman" || input$batsmanFuncODIW == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsODIW")
+        plotOutput("batsmanPlotsODIW",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyODIW")
+        plotlyOutput("batsmanPlotlyODIW",width = "100%", height = "550px")
     }
 
   })
@@ -2774,12 +2774,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotODIW <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsODIW")
+      plotOutput("bowlerPlotsODIW",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncODIW == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsODIW")
+        plotOutput("bowlerPlotsODIW",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyODIW")
+        plotlyOutput("bowlerPlotlyODIW",width = "100%", height = "550px")
     }
 
   })
@@ -2809,9 +2809,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableODIW == 1){
-        plotOutput("ODIWMatchPlots")
+        plotOutput("ODIWMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("ODIWMatchPlotly")
+        plotlyOutput("ODIWMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -2869,9 +2869,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1ODIW == 1){
-        plotOutput("ODIWMatch2TeamsPlots")
+        plotOutput("ODIWMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1ODIW == 2){
-        plotlyOutput("ODIWMatch2TeamsPlotly")
+        plotlyOutput("ODIWMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -2926,9 +2926,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2ODIW == 1){
-        plotOutput("ODIWTeamPerfOverallPlots")
+        plotOutput("ODIWTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2ODIW == 2){
-        plotlyOutput("ODIWTeamPerfOverallPlotly")
+        plotlyOutput("ODIWTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -2966,14 +2966,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotCPL <- renderUI({
     if(input$staticIntvCPL == 1){
-      plotOutput("batsmanPlotsCPL")
+      plotOutput("batsmanPlotsCPL",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncCPL =="Dismissals of batsman" || input$batsmanFuncCPL == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsCPL")
+        plotOutput("batsmanPlotsCPL",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlyCPL")
+        plotlyOutput("batsmanPlotlyCPL",width = "100%", height = "550px")
     }
 
   })
@@ -3006,12 +3006,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotCPL <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsCPL")
+      plotOutput("bowlerPlotsCPL",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncCPL == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsCPL")
+        plotOutput("bowlerPlotsCPL",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyCPL")
+        plotlyOutput("bowlerPlotlyCPL",width = "100%", height = "550px")
     }
 
   })
@@ -3043,9 +3043,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableCPL == 1){
-        plotOutput("CPLMatchPlots")
+        plotOutput("CPLMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("CPLMatchPlotly")
+        plotlyOutput("CPLMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -3103,9 +3103,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1CPL == 1){
-        plotOutput("CPLMatch2TeamsPlots")
+        plotOutput("CPLMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1CPL == 2){
-        plotlyOutput("CPLMatch2TeamsPlotly")
+        plotlyOutput("CPLMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -3162,9 +3162,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2CPL == 1){
-        plotOutput("CPLTeamPerfOverallPlots")
+        plotOutput("CPLTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2CPL == 2){
-        plotlyOutput("CPLTeamPerfOverallPlotly")
+        plotlyOutput("CPLTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -3219,9 +3219,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("CPLBattingPerfPlots")
+        plotOutput("CPLBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("CPLBattingPerfPlotly")
+        plotlyOutput("CPLBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -3274,9 +3274,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4CPL == 1){
-        plotOutput("CPLBowlingPerfPlots")
+        plotOutput("CPLBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("CPLBowlingPerfPlotly")
+        plotlyOutput("CPLBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -3316,14 +3316,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotSSM <- renderUI({
     if(input$staticIntvSSM == 1){
-      plotOutput("batsmanPlotsSSM")
+      plotOutput("batsmanPlotsSSM",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncSSM =="Dismissals of batsman" || input$batsmanFuncSSM == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsSSM")
+        plotOutput("batsmanPlotsSSM",width = "100%", height = "550px")
       else
-        plotlyOutput("batsmanPlotlySSM")
+        plotlyOutput("batsmanPlotlySSM",width = "100%", height = "550px")
     }
 
   })
@@ -3356,12 +3356,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotSSM <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsSSM")
+      plotOutput("bowlerPlotsSSM",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncSSM == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsSSM")
+        plotOutput("bowlerPlotsSSM",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlySSM")
+        plotlyOutput("bowlerPlotlySSM",width = "100%", height = "550px")
     }
 
   })
@@ -3393,9 +3393,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableSSM == 1){
-        plotOutput("SSMMatchPlots")
+        plotOutput("SSMMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("SSMMatchPlotly")
+        plotlyOutput("SSMMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -3453,9 +3453,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1SSM == 1){
-        plotOutput("SSMMatch2TeamsPlots")
+        plotOutput("SSMMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1SSM == 2){
-        plotlyOutput("SSMMatch2TeamsPlotly")
+        plotlyOutput("SSMMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -3511,9 +3511,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2SSM == 1){
-        plotOutput("SSMTeamPerfOverallPlots")
+        plotOutput("SSMTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2SSM == 2){
-        plotlyOutput("SSMTeamPerfOverallPlotly")
+        plotlyOutput("SSMTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -3568,9 +3568,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("SSMBattingPerfPlots")
+        plotOutput("SSMBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("SSMBattingPerfPlotly")
+        plotlyOutput("SSMBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -3624,9 +3624,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4SSM == 1){
-        plotOutput("SSMBowlingPerfPlots")
+        plotOutput("SSMBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("SSMBowlingPerfPlotly")
+        plotlyOutput("SSMBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
