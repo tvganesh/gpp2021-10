@@ -80,14 +80,14 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotIPL <- renderUI({
     if(input$staticIntv == 1){
-      plotOutput("batsmanPlotsIPL")
+      plotOutput("batsmanPlotsIPL",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncIPL =="Dismissals of batsman" || input$batsmanFuncIPL == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsIPL")
+        plotOutput("batsmanPlotsIPL",width = "100%", height = "500px")
       else
-        plotlyOutput("batsmanPlotlyIPL")
+        plotlyOutput("batsmanPlotlyIPL",width = "100%", height = "550px")
     }
 
   })
@@ -119,12 +119,12 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotIPL <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsIPL")
+      plotOutput("bowlerPlotsIPL",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncIPL == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsIPL")
+        plotOutput("bowlerPlotsIPL",width = "100%", height = "550px")
       else
-        plotlyOutput("bowlerPlotlyIPL")
+        plotlyOutput("bowlerPlotlyIPL",width = "100%", height = "550px")
     }
 
   })
@@ -160,9 +160,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable == 1){
-        plotOutput("IPLMatchPlots")
+        plotOutput("IPLMatchPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("IPLMatchPlotly")
+        plotlyOutput("IPLMatchPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -217,9 +217,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1 == 1){
-        plotOutput("IPLMatch2TeamsPlots")
+        plotOutput("IPLMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1 == 2){
-        plotlyOutput("IPLMatch2TeamsPlotly")
+        plotlyOutput("IPLMatch2TeamsPlotly",width = "100%", height = "550px")
       }
     }
 
@@ -276,9 +276,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2 == 1){
-        plotOutput("IPLTeamPerfOverallPlots")
+        plotOutput("IPLTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2 == 2){
-        plotlyOutput("IPLTeamPerfOverallPlotly")
+        plotlyOutput("IPLTeamPerfOverallPlotly",width = "100%", height = "550px")
       }
     }
   })
@@ -330,9 +330,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("IPLBattingPerfPlots",width = "100%", height = "550px",)
+        plotOutput("IPLBattingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("IPLBattingPerfPlotly",width = "100%", height = "550px",)
+        plotlyOutput("IPLBattingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -387,9 +387,9 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4 == 1){
-        plotOutput("IPLBowlingPerfPlots")
+        plotOutput("IPLBowlingPerfPlots",width = "100%", height = "550px")
       } else{
-        plotlyOutput("IPLBowlingPerfPlotly")
+        plotlyOutput("IPLBowlingPerfPlotly",width = "100%", height = "550px")
       }
 
     }
@@ -435,12 +435,12 @@ shinyServer(function(input, output,session) {
   # Analyze and display batsmen plots
   output$batsmanPlotT20M <- renderUI({
     if(input$staticIntvT20M == 1){
-      plotOutput("batsmanPlotsT20M")
+      plotOutput("batsmanPlotsT20M",width = "100%", height = "550px")
     }
     else{
       #Plotly does not support polar coordinates required for dismissals, hence this will be normal ggplot (Kludge!!)
       if(input$batsmanFuncT20M =="Dismissals of batsman" || input$batsmanFuncT20M == "Predict Runs of batsman")
-        plotOutput("batsmanPlotsT20M")
+        plotOutput("batsmanPlotsT20M",width = "100%", height = "550px")
       else
         plotlyOutput("batsmanPlotlyT20M")
     }
@@ -474,10 +474,10 @@ shinyServer(function(input, output,session) {
 
   output$bowlerPlotT20M <- renderUI({
     if(input$staticIntv1 == 1){
-      plotOutput("bowlerPlotsT20M")
+      plotOutput("bowlerPlotsT20M",width = "100%", height = "550px")
     }   else{
       if(input$bowlerFuncT20M == "Bowler's wickets prediction")
-        plotOutput("bowlerPlotsT20M")
+        plotOutput("bowlerPlotsT20M",width = "100%", height = "550px")
       else
         plotlyOutput("bowlerPlotlyT20M")
     }
@@ -511,7 +511,7 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTableT20M == 1){
-        plotOutput("T20MMatchPlots")
+        plotOutput("T20MMatchPlots",width = "100%", height = "550px")
       } else{
         plotlyOutput("T20MMatchPlotly")
       }
@@ -571,7 +571,7 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable1T20M == 1){
-        plotOutput("T20MMatch2TeamsPlots")
+        plotOutput("T20MMatch2TeamsPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable1T20M == 2){
         plotlyOutput("T20MMatch2TeamsPlotly")
       }
@@ -629,7 +629,7 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable2T20M == 1){
-        plotOutput("T20MTeamPerfOverallPlots")
+        plotOutput("T20MTeamPerfOverallPlots",width = "100%", height = "550px")
       } else if(input$plotOrTable2T20M == 2){
         plotlyOutput("T20MTeamPerfOverallPlotly")
       }
@@ -685,7 +685,7 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable3 == 1){
-        plotOutput("T20MBattingPerfPlots")
+        plotOutput("T20MBattingPerfPlots",width = "100%", height = "550px")
       } else{
         plotlyOutput("T20MBattingPerfPlotly")
       }
@@ -740,7 +740,7 @@ shinyServer(function(input, output,session) {
     }
     else{ #Else plot
       if(input$plotOrTable4T20M == 1){
-        plotOutput("T20MBowlingPerfPlots")
+        plotOutput("T20MBowlingPerfPlots",width = "100%", height = "550px")
       } else{
         plotlyOutput("T20MBowlingPerfPlotly")
       }
