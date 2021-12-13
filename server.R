@@ -287,7 +287,7 @@ shinyServer(function(input, output,session) {
   ################################  IPL Overall Batting Performance ##############################
   # IPL Batsmen
   output$dateRange5<- renderUI({
-    m <- helper(IPLTeamNames, "./ipl/IPLPerformance","IPL")
+    m <- helper(IPLTeamNames, "./ipl/iplPerformance","IPL")
     dateRangeInput("dateRange5", label = h4("Date range"),
                    start = m[[1]],
                    end   = m[[2]],
@@ -300,10 +300,10 @@ shinyServer(function(input, output,session) {
                          start = input$dateRange5[1],
                          end   = input$dateRange5[2])
     updateSliderInput(session, "minMatches", # Set slider at 75 between min & max
-                      min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]),
-                      max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[2]]),
-                      value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[1]]) +
-                                      (helper1(IPLTeamNames, input$dateRange5, "./ipl/IPLPerformance","IPL")[[2]]))/1.333))
+                      min=(helper1(IPLTeamNames, input$dateRange5, "./ipl/iplPerformance","IPL")[[1]]),
+                      max = (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplPerformance","IPL")[[2]]),
+                      value =round(((helper1(IPLTeamNames, input$dateRange5, "./ipl/iplPerformance","IPL")[[1]]) +
+                                      (helper1(IPLTeamNames, input$dateRange5, "./ipl/iplPerformance","IPL")[[2]]))/1.333))
   })
 
   output$IPLBattingPerfPlots <- renderPlot({
