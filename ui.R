@@ -134,7 +134,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                           )
                                                                  ),
                                                                  # Analyze IPL Team Overall Perf
-                                                                 tabPanel("Overall Team Performance",
+                                                                 tabPanel("IPL Team Performance",
                                                                           h4("Analyze IPL team's overall performance"),
                                                                           sidebarPanel(
                                                                               selectInput('overallperfFunc', 'Select function', teamOverallPerfFunc),
@@ -162,8 +162,8 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                  ),
 
                                                                  # Rank IPL Batsmen tab
-                                                                 tabPanel("IPL Performance Analysis",
-                                                                          #h4("IPL Performance analysis"),
+                                                                 tabPanel("IPL Batting Analysis",
+                                                                          h4("IPL Batting Analysis"),
                                                                           sidebarPanel(
                                                                               selectInput('T20BattingPerfFunc', 'Select function', T20OverallBattingPerfFunc),
                                                                               sliderInput("minMatches", "Matches played",
@@ -194,8 +194,8 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                           )
                                                                  ),
                                                                  # Rank IPL Bowlers tab
-                                                                 tabPanel("Rank IPL Bowlers",
-                                                                          h4('Rank IPL Bowlers'),
+                                                                 tabPanel("IPL Bowling Analysis",
+                                                                          h4('IPL Bowling Analysis'),
 
                                                                           sidebarPanel(
                                                                               selectInput('T20BowlingPerfFunc', 'Select function', T20OverallBowlingPerfFunc),
@@ -332,8 +332,8 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                             ),
                                                             # Analyze T20Mens Team Overall Perf
-                                                            tabPanel("Overall Team Performance",
-                                                                     h4("Analyze T20M team's overall performance"),
+                                                            tabPanel("T20 (men) Team Performance",
+                                                                     h4("Analyze T20 men team's overall performance"),
                                                                      sidebarPanel(
                                                                          selectInput('overallperfFuncT20M', 'Select function', teamOverallPerfFunc),
                                                                          selectInput('teamMatchesT20M', 'Select the team', T20MTeamsAll,selectize=FALSE, size=13),
@@ -358,9 +358,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                             ),
                                                             #  Overall T20 Men tab
-                                                            tabPanel("Overall T20 Batsmen  (men)",
+                                                            tabPanel("T20 (Men) Batting Performance",
 
-                                                                     h4('Intl. T20 Batsmen (men) performance'),
+                                                                     h4('Intl. T20 (Men) Batting Performance'),
                                                                      sidebarPanel(
                                                                          selectInput('T20BattingPerfFuncT20M', 'Select function', T20OverallBattingPerfFunc),
                                                                          sliderInput("minMatchesT20M", "Matches played",
@@ -389,9 +389,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                      )
                                                             ),
                                                             # Overall T20 Bowlers(men) tab
-                                                            tabPanel("Intl. T20 Bowlers (men) performance",
+                                                            tabPanel("T20 (Men) Bowling Performance",
 
-                                                                     h4('Intl. T20 Bowlers (men) performance'),
+                                                                     h4('Intl.T20 (Men) Bowling Performance'),
                                                                      sidebarPanel(
                                                                          selectInput('T20BowlingPerfFuncT20M', 'Select function', T20OverallBowlingPerfFunc),
                                                                          sliderInput("minMatches1T20M", "Matches played",
@@ -424,7 +424,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                       ########################################################################################
                       tabPanel("Intl. T20 (women)",navbarPage("GooglyPlusPlus - International T20 (women)",
                                                               # Batsman tab
-                                                              tabPanel("Intl T20 batsman",
+                                                              tabPanel("Intl T20 (women)batsman",
                                                                        h4('Analyze Intl T20 batsman performances'),
                                                                        sidebarPanel(
                                                                            selectInput('batsmanFuncT20W', 'Select function', batsmanFuncs),
@@ -446,7 +446,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                        )
                                                               ),
                                                               # Bowlers tab
-                                                              tabPanel("Intl. T20 bowlers",
+                                                              tabPanel("Intl. T20 (women) bowlers",
 
                                                                        h4('Analyze Intl. T20 bowler performances'),
 
@@ -471,7 +471,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                        )
 
                                                               ),
-                                                              tabPanel("Intl T20 Match",
+                                                              tabPanel("Intl T20 (women) Match",
                                                                        h4('Analyze an Intl T20 match'),
                                                                        sidebarPanel(
                                                                            selectInput('matchFuncT20W', 'Select match function', matchFuncs),
@@ -494,7 +494,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                               ),
 
                                                               # Analyze 2 T20 Teams women's  matches
-                                                              tabPanel("Head to head",
+                                                              tabPanel("Head to head (women)",
                                                                        h4('Head-to-head between 2 T20 (womens) teams'),
                                                                        sidebarPanel(
                                                                            selectInput('matches2TeamFuncT20W', 'Select function', matches2TeamsFuncs),
@@ -521,7 +521,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                               ),
                                                               # Analyze T20Wens Team Overall Perf
-                                                              tabPanel("Overall Performance",
+                                                              tabPanel("T20 (women) Team Performance",
                                                                        h4("Analyze T20W team's overall performance"),
                                                                        sidebarPanel(
                                                                            selectInput('overallperfFuncT20W', 'Select function', teamOverallPerfFunc),
@@ -547,9 +547,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                               ),
                                                               # Rank T20 Women  tab
-                                                              tabPanel("Rank Intl. T20 Batsmen (women)",
+                                                              tabPanel("Intl. T20 (women) batting Performance ",
 
-                                                                       h4('Rank Intl. T20 Batsmen (women)'),
+                                                                       h4('Intl. T20 (women) batting Performance'),
 
                                                                        sidebarPanel(
                                                                            selectInput('T20BattingPerfFuncT20W', 'Select function', T20OverallBattingPerfFunc),
@@ -580,9 +580,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                                        )
                                                               ),
                                                               # Rank T20 Bowlers(women) tab
-                                                              tabPanel("Rank Intl. T20 Bowlers (women)",
+                                                              tabPanel("Intl. T20 (women) bowling Performance",
 
-                                                                       h4('Rank Intl. T20 Bowlers (women)'),
+                                                                       h4('Rank Intl. T20 (women) bowling Performance'),
                                                                        sidebarPanel(
                                                                            selectInput('T20BowlingPerfFuncT20W', 'Select function', T20OverallBowlingPerfFunc),
                                                                            sliderInput("minMatches1T20W", "Matches played",
@@ -712,7 +712,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Analyze BBL Team Overall Perf
-                                                    tabPanel("Overall Performance",
+                                                    tabPanel("BBL Team Performance",
                                                              h4("Analyze BBL team's overall performance"),
                                                              sidebarPanel(
                                                                  selectInput('overallperfFuncBBL', 'Select function', teamOverallPerfFunc),
@@ -738,9 +738,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank BBL Players tab
-                                                    tabPanel("Overall BBL Batsmen Amalysis",
+                                                    tabPanel("BBL Batting Performance",
 
-                                                             h4('Overall BBL Batsmen '),
+                                                             h4('Overall BBL Batting Performance '),
                                                              sidebarPanel(
                                                                  selectInput('T20BattingPerfFuncBBL', 'Select function', T20OverallBattingPerfFunc),
                                                                  sliderInput("minMatchesBBL", "Matches played",
@@ -770,9 +770,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank BBL Bowlers tab
-                                                    tabPanel("BBL Bowlers Overall Performance",
+                                                    tabPanel("BBL Bowling Performance",
 
-                                                             h4('BBL BowlersOverall Performance'),
+                                                             h4('BBL Bowling Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BowlingPerfFuncBBL', 'Select function', T20OverallBowlingPerfFunc),
                                                                  sliderInput("minMatches1BBL", "Matches played",
@@ -902,7 +902,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Analyze NTB Team Overall Perf
-                                                    tabPanel("Overall Performance",
+                                                    tabPanel("NTB Teams Performance",
                                                              h4("Analyze NTB team's overall performance"),
                                                              sidebarPanel(
                                                                  selectInput('overallperfFuncNTB', 'Select function', teamOverallPerfFunc),
@@ -928,9 +928,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # NTB Players tab
-                                                    tabPanel("NTB Batsmen Overall",
+                                                    tabPanel("NTB Batting Performance",
 
-                                                             h4('NTB Batsmen Overall '),
+                                                             h4('NTB Batting Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BattingPerfFuncNTB', 'Select function', T20OverallBattingPerfFunc),
                                                                  sliderInput("minMatchesNTB", "Matches played",
@@ -960,9 +960,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank NTB Bowlers tab
-                                                    tabPanel("NTB Bowlers",
+                                                    tabPanel("NTB Bowling Performance",
 
-                                                             h4('NTB Bowlers overall'),
+                                                             h4('NTB Bowling Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BowlingPerfFuncNTB', 'Select function', T20OverallBowlingPerfFunc),
                                                                  sliderInput("minMatches1NTB", "Matches played",
@@ -1092,7 +1092,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Analyze PSL Team Overall Perf
-                                                    tabPanel("Overall Performance",
+                                                    tabPanel("PSL Team Performance",
                                                              h4("Analyze PSL team's overall performance"),
                                                              sidebarPanel(
                                                                  selectInput('overallperfFuncPSL', 'Select function', teamOverallPerfFunc),
@@ -1118,9 +1118,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank PSL Players tab
-                                                    tabPanel("Rank  PSL Batsmen",
+                                                    tabPanel("PSL Batting Performance",
 
-                                                             h4('Rank  PSL Batsmen '),
+                                                             h4('PSL Batting Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BattingPerfFuncPSL', 'Select function', T20OverallBattingPerfFunc),
                                                                  sliderInput("minMatchesPSL", "Matches played",
@@ -1150,9 +1150,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank PSL Bowlers tab
-                                                    tabPanel("PSL Bowlers",
+                                                    tabPanel("PSL Bowling Performance",
 
-                                                             h4('PSL Bowlers '),
+                                                             h4('PSL Bowling Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BowlingPerfFuncPSL', 'Select function', T20OverallBowlingPerfFunc),
                                                                  sliderInput("minMatches1PSL", "Matches played",
@@ -1282,7 +1282,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                      ),
                                                      # Analyze WBB Team Overall Perf
-                                                     tabPanel("Overall Performance",
+                                                     tabPanel("WBB Team Performance",
                                                               h4("Analyze WBB team's overall performance"),
                                                               sidebarPanel(
                                                                   selectInput('overallperfFuncWBB', 'Select function', teamOverallPerfFunc),
@@ -1308,8 +1308,8 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                      ),
                                                      # Rank WBB PlayersL tab
-                                                     tabPanel("Rank WBB Batsmen",
-                                                              h4('Rank  WBB Batsmen '),
+                                                     tabPanel("WBB Batting Performance",
+                                                              h4('WBB Batting Performance'),
                                                               sidebarPanel(
                                                                   selectInput('T20BattingPerfFuncWBB', 'Select function', T20OverallBattingPerfFunc),
                                                                   sliderInput("minMatchesWBB", "Matches played",
@@ -1339,9 +1339,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                               )
                                                      ),
                                                      # Rank WBB Bowlers tab
-                                                     tabPanel("Rank WBB Bowlers",
+                                                     tabPanel("WBB Bowling Performance",
 
-                                                              h4('Rank WBB Bowlers '),
+                                                              h4('WBB Bowling Performance'),
                                                               sidebarPanel(
                                                                   selectInput('T20BowlingPerfFuncWBB', 'Select function', T20OverallBowlingPerfFunc),
                                                                   sliderInput("minMatches1WBB", "Matches played",
@@ -1471,7 +1471,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Analyze CPL Team Overall Perf
-                                                    tabPanel("Overall Performance",
+                                                    tabPanel("CPL Team Performance",
                                                              h4("Analyze CPL team's overall performance"),
                                                              sidebarPanel(
                                                                  selectInput('overallperfFuncCPL', 'Select function', teamOverallPerfFunc),
@@ -1497,9 +1497,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank CPL Players tab
-                                                    tabPanel("Rank  CPL Batsmen",
+                                                    tabPanel("CPL Batting Performance",
 
-                                                             h4('Rank  CPL Batsmen '),
+                                                             h4('CPL Batting Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BattingPerfFuncCPL', 'Select function', T20OverallBattingPerfFunc),
                                                                  sliderInput("minMatchesCPL", "Matches played",
@@ -1529,9 +1529,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank CPL Bowlers tab
-                                                    tabPanel("Rank CPL Bowlers",
+                                                    tabPanel("CPL Bowling Performance",
 
-                                                             h4('Rank CPL Bowlers '),
+                                                             h4('CPL Bowling Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BowlingPerfFuncCPL', 'Select function', T20OverallBowlingPerfFunc),
                                                                  sliderInput("minMatches1CPL", "Matches played",
@@ -1662,7 +1662,7 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Analyze SSM Team Overall Perf
-                                                    tabPanel("Overall Performance",
+                                                    tabPanel("SSM Team Performance",
                                                              h4("Analyze SSM team's overall performance"),
                                                              sidebarPanel(
                                                                  selectInput('overallperfFuncSSM', 'Select function', teamOverallPerfFunc),
@@ -1688,12 +1688,11 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
 
                                                     ),
                                                     # Rank SSM Players tab
-                                                    tabPanel("Rank  SSM Batsmen",
-
+                                                    tabPanel("SSM Batting Performance",
+                                                             h4('SSM Batting Performance'),
                                                              sidebarPanel(
-                                                                 h4('Rank  SSM Batsmen '),
-                                                                 selectInput('T20BattingPerfFuncSSM', 'Select function', T20OverallBattingPerfFunc),
 
+                                                                 selectInput('T20BattingPerfFuncSSM', 'Select function', T20OverallBattingPerfFunc),
                                                                  sliderInput("minMatchesSSM", "Matches played",
                                                                              min = (helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[3]]),
                                                                              max = (helper(SSMTeamNames,"./ssm/ssmPerformance","SSM")[[4]]),
@@ -1721,9 +1720,9 @@ shinyUI(fluidPage(theme = shinytheme("readable"),
                                                              )
                                                     ),
                                                     # Rank SSM Bowlers tab
-                                                    tabPanel("Rank SSM Bowlers",
+                                                    tabPanel("SSM Bowling Performance",
 
-                                                             h4('Rank SSM Bowlers '),
+                                                             h4('SSM Bowling Performance'),
                                                              sidebarPanel(
                                                                  selectInput('T20BowlingPerfFuncSSM', 'Select function', T20OverallBowlingPerfFunc),
                                                                  sliderInput("minMatches1SSM", "Matches played",
